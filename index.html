@@ -81,6 +81,9 @@
   .sx svg{display:block;min-width:680px;width:100%;height:auto}
   .cdia{margin:24px 0 0;padding:24px 22px 22px;background:var(--panel);border:1px solid var(--line2);border-radius:6px}
   .cdia figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
+  .book{margin:26px 0 30px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+  .book iframe{display:block;width:100%;height:720px;border:0}
+  .book .bhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:16px 20px 0}
   .cdia .dlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
 
   /* services */
@@ -177,7 +180,7 @@
   "avail": "Available for projects",
   "h1a": "I build the system that answers your leads",
   "h1b": "before you can.",
-  "kicker": "Two live client systems in production. Not course projects.",
+  "kicker": "Three live client systems in production. Not course projects.",
   "lede": "Most small businesses lose enquiries in the gap between the ad and the reply. I close that gap. I build booking and follow-up systems in GoHighLevel and n8n, then make the tracking behind them report numbers you can actually trust.",
   "cta1": "Start a conversation",
   "cta2": "See the work",
@@ -201,7 +204,7 @@
   ],
   "diaCap": "The lead-to-booking flow I rebuilt this month for a Sydney coworking operator. Both of their sites run on one set of workflows, separated by custom values rather than duplicated.",
   "aboutH": "I would rather fix the cause than work around it.",
-  "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. I also run the ads and the tracking for the same clients, so I see what happens to a lead before it reaches the CRM and after.",
+  "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. Before this I spent eight years in paid media, including a spell at Google working on Google Ads, on campaigns for brands like DoorDash, The Walking Dead and Fox News. I still run the ads and the tracking for my own clients, so I see what happens to a lead before it reaches the CRM and after.",
   "about2": "Most of what I fix is not exotic. It is a workflow with no exit condition still chasing someone who already booked. It is a purchase event firing twice so the numbers cannot be trusted. It is a hundred products quietly missing from a shopping feed because nobody published them to the right channel.",
   "about3": "I am not the cheapest and I am not the fastest. What I try to be is the person who tests the thing before saying it works, writes down what was changed, and leaves you able to run it without me.",
   "svcH": "Four things, done properly, rather than a long list done once.",
@@ -497,7 +500,7 @@
   "upwork": "",
   "ojph": "",
   "loc": "Philippines · working with clients in Australia, the US and the UK",
-  "rate": "$20/hour · fixed price per project · remote",
+  "rate": "Fixed price per project · remote",
   "caseDia": [
     {
       "cap": "Both sites run on the same set of appointment workflows. What differs per site lives in custom values, so there is one copy to keep right, not two that drift apart."
@@ -512,7 +515,8 @@
       "cap": ""
     }
   ],
-  "github": "github.com/BRESG"
+  "github": "github.com/BRESG",
+  "calendar": ""
 }
 </script>
 
@@ -728,6 +732,10 @@
       + '<p class="num"><b>08</b> / Contact</p>'
       + '<h2>' + ed("ctH",get("ctH")) + '</h2>'
       + '<p class="l">' + ed("ctP",get("ctP")) + '</p>'
+      + (get("calendar")
+          ? '<div class="book"><p class="bhead">Pick a time</p>'
+            + '<iframe data-ghl-calendar src="' + esc(get("calendar")) + '" title="Book a call" loading="lazy"></iframe></div>'
+          : '')
       + '<div class="clist">'
       + '<div><h4>Email</h4><a href="mailto:' + esc(mail) + '">' + ed("email",mail) + '</a></div>'
       + (get("github") ? '<div><h4>Code</h4><a href="https://' + esc(get("github")) + '" target="_blank" rel="noopener">' + ed("github",get("github")) + '</a></div>' : '')
@@ -817,5 +825,6 @@
   }
 })();
 </script>
+<script src="ghl-calendar-embed.js"></script>
 </body>
 </html>
