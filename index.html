@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Bryan Esguerra builds booking and follow-up systems in GoHighLevel, n8n and Zapier, and fixes the ad tracking behind them.">
+<style>*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Bryan Esguerra</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0C1A18; --panel:#122522; --panel2:#17302C; --line:#22403B; --line2:#1B3733;
+    --ink:#F2EEE6; --body:#BDBAB1; --muted:#8B8A80;
+    --jade:#4FC9AE; --amber:#E4A64B; --rose:#E08A6B;
+    --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --serif:"Source Serif 4",Georgia,serif;
+    --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+    --wrap:1060px;
+  }
+  :root[data-theme="light"]{
+    --bg:#FAF8F3; --panel:#FFFFFF; --panel2:#F3EFE6; --line:#E2DBCC; --line2:#EBE5D9;
+    --ink:#10201D; --body:#3C4A46; --muted:#77736A;
+    --jade:#0B6E5F; --amber:#A8660F; --rose:#B4593A;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]){
+      --bg:#FAF8F3; --panel:#FFFFFF; --panel2:#F3EFE6; --line:#E2DBCC; --line2:#EBE5D9;
+      --ink:#10201D; --body:#3C4A46; --muted:#77736A;
+      --jade:#0B6E5F; --amber:#A8660F; --rose:#B4593A;
+    }
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--body);font-family:var(--serif);font-size:17px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding-left:20px;padding-right:20px}
+  h1,h2,h3,h4{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0;letter-spacing:-0.02em}
+  a{color:var(--jade)}
+  a:focus-visible,button:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+  section{border-top:1px solid var(--line2)}
+  section>.wrap{padding-block:64px}
+  .num{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+  .num b{color:var(--jade);font-weight:500}
+  .sec-h{max-width:60ch;margin-bottom:40px}
+  .sec-h h2{font-size:clamp(25px,3.6vw,36px);font-weight:700;line-height:1.14}
+  .sec-h p{margin:14px 0 0;color:var(--muted)}
+
+  /* masthead */
+  .mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+  .mast .wrap{padding-block:16px;display:flex;gap:16px 26px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .logo{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .logo b{color:var(--jade);font-weight:500}
+  .mast nav{display:flex;flex-wrap:wrap;gap:4px 18px;font-family:var(--mono);font-size:12px}
+  .mast nav a{color:var(--muted);text-decoration:none}
+  .mast nav a:hover{color:var(--jade)}
+
+  /* hero */
+  .hero .wrap{padding-block:72px 40px}
+  .avail{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--jade);border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:26px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--jade)}
+  .hero h1{font-size:clamp(36px,7vw,68px);font-weight:700;line-height:1.02;letter-spacing:-.03em;max-width:15ch}
+  .hero h1 em{font-style:normal;color:var(--jade)}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--muted);margin:22px 0 0;letter-spacing:.02em}
+  .lede{font-size:clamp(17px,2.1vw,20px);max-width:58ch;margin:20px 0 0}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{font-family:var(--mono);font-size:14px;text-decoration:none;padding:13px 22px;border-radius:4px;display:inline-block}
+  .btn.p{background:var(--jade);color:var(--bg);font-weight:500}
+  .btn.p:hover{background:var(--ink)}
+  .btn.s{border:1px solid var(--line);color:var(--ink)}
+  .btn.s:hover{border-color:var(--jade);color:var(--jade)}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line2);border-block:1px solid var(--line2)}
+  .stat{background:var(--bg);padding:26px 20px}
+  .stat b{display:block;font-family:var(--display);font-size:clamp(26px,3.6vw,36px);font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1}
+  .stat span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+  /* diagram */
+  .dia{background:var(--panel)}
+  .dia .wrap{padding-block:40px}
+  .dia figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7}
+  .sx{overflow-x:auto}
+  .sx svg{display:block;min-width:680px;width:100%;height:auto}
+  .cdia{margin:24px 0 0;padding:24px 22px 22px;background:var(--panel);border:1px solid var(--line2);border-radius:6px}
+  .cdia figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
+  .cdia .dlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+
+  /* services */
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2)}
+  .card{background:var(--bg);padding:28px 24px}
+  .card .ix{font-family:var(--mono);font-size:11px;color:var(--jade);letter-spacing:.1em}
+  .card h3{font-size:17px;font-weight:600;margin-top:12px}
+  .card p{margin:10px 0 0;font-size:15.5px}
+
+  /* process */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 30px}
+  .step .ix{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.1em}
+  .step h3{font-size:16px;font-weight:600;margin-top:10px;padding-top:12px;border-top:2px solid var(--jade)}
+  .step p{margin:9px 0 0;font-size:15px}
+
+  /* tools */
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:30px 34px}
+  .tools h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .chips span{font-family:var(--mono);font-size:12px;background:var(--panel2);color:var(--body);border-radius:3px;padding:5px 10px}
+
+  /* cases */
+  .case{border-top:1px solid var(--line);padding-block:38px}
+  .case:first-of-type{border-top:0;padding-top:0}
+  .ctop{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline}
+  .ctop h3{font-size:clamp(20px,2.7vw,25px);font-weight:700}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+  .hook{font-family:var(--mono);font-size:13px;color:var(--jade);margin:10px 0 0}
+  .rows{display:grid;gap:18px;margin-top:22px}
+  .row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:start}
+  .row dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:5px}
+  .row dd{margin:0}
+  .row dd p{margin:0 0 10px}
+  .row dd p:last-child{margin-bottom:0}
+  .found{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+  .found li{position:relative;padding-left:20px}
+  .found li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;background:var(--amber);border-radius:1px}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line2)}
+  summary{cursor:pointer;list-style:none;padding:18px 0;font-family:var(--display);font-weight:600;font-size:16.5px;color:var(--ink);display:flex;justify-content:space-between;gap:16px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:var(--mono);color:var(--jade);font-size:18px;flex:none}
+  details[open] summary::after{content:"\2212"}
+  details p{margin:0 0 20px;max-width:66ch;font-size:15.5px}
+
+
+  /* zapier builds */
+  .zap{border-top:1px solid var(--line);padding-block:34px}
+  .zap:first-of-type{border-top:0;padding-top:0}
+  .zap-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}
+  .zap-head h3{font-size:clamp(19px,2.5vw,23px);font-weight:700}
+  .zap-meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--amber)}
+  .zap-d{margin:12px 0 0;max-width:72ch}
+  .zap-img{display:block;margin-top:20px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel2);line-height:0}
+  .zap-img img{width:100%;height:auto;display:block}
+  .zap-img:hover{border-color:var(--jade)}
+
+  /* contact */
+  .contact{background:var(--panel);border-top:1px solid var(--line2)}
+  .contact .wrap{padding-block:64px 72px}
+  .contact h2{font-size:clamp(26px,3.8vw,40px);font-weight:700}
+  .contact p.l{max-width:56ch;margin:16px 0 0}
+  .clist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 30px;margin-top:38px}
+  .clist h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  .clist a,.clist span.v{display:block;margin-top:8px;font-size:15.5px;word-break:break-word}
+  .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+
+  /* edit mode */
+  #bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--panel2);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px}
+  #bar .sp{flex:1}
+  #bar button{font-family:var(--mono);font-size:12.5px;padding:9px 16px;border-radius:4px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+  #bar button.p{background:var(--jade);color:var(--bg);border-color:var(--jade);font-weight:500}
+  #bar button:disabled{opacity:.5;cursor:default}
+  body.editing [data-e]{outline:1px dashed var(--line);outline-offset:3px;border-radius:2px}
+  body.editing [data-e]:hover{outline-color:var(--jade)}
+  body.editing [data-e]:focus{outline:2px solid var(--amber)}
+  body.editing{padding-bottom:78px}
+  #msg{color:var(--muted)}
+
+  @media (max-width:560px){
+    .row{grid-template-columns:1fr;gap:6px}
+    .row dt{padding-top:0}
+    section>.wrap{padding-block:46px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<script type="application/json" id="data">
+{
+  "name": "Bryan Esguerra",
+  "role": "Automation & CRM Systems · GoHighLevel · n8n · Shopify · Tracking",
+  "avail": "Available for projects",
+  "h1a": "I build the system that answers your leads",
+  "h1b": "before you can.",
+  "kicker": "Two live client systems in production. Not course projects.",
+  "lede": "Most small businesses lose enquiries in the gap between the ad and the reply. I close that gap. I build booking and follow-up systems in GoHighLevel and n8n, then make the tracking behind them report numbers you can actually trust.",
+  "cta1": "Start a conversation",
+  "cta2": "See the work",
+  "stats": [
+    {
+      "n": "3",
+      "l": "Live client systems"
+    },
+    {
+      "n": "2",
+      "l": "Locations, one workflow set"
+    },
+    {
+      "n": "102",
+      "l": "Products found missing from Shopping"
+    },
+    {
+      "n": "AU · US",
+      "l": "Client base"
+    }
+  ],
+  "diaCap": "The lead-to-booking flow I rebuilt this month for a Sydney coworking operator. Both of their sites run on one set of workflows, separated by custom values rather than duplicated.",
+  "aboutH": "I would rather fix the cause than work around it.",
+  "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. I also run the ads and the tracking for the same clients, so I see what happens to a lead before it reaches the CRM and after.",
+  "about2": "Most of what I fix is not exotic. It is a workflow with no exit condition still chasing someone who already booked. It is a purchase event firing twice so the numbers cannot be trusted. It is a hundred products quietly missing from a shopping feed because nobody published them to the right channel.",
+  "about3": "I am not the cheapest and I am not the fastest. What I try to be is the person who tests the thing before saying it works, writes down what was changed, and leaves you able to run it without me.",
+  "svcH": "Four things, done properly, rather than a long list done once.",
+  "services": [
+    {
+      "h": "Speed-to-lead systems",
+      "p": "First reply in seconds, not hours. Missed-call text back, follow-up that stops the moment someone replies or books, and no contact ever sitting in two sequences at once."
+    },
+    {
+      "h": "CRM builds in GoHighLevel",
+      "p": "Custom fields and tags first, then pipeline stages, then workflows. Built in that order so everything after has something stable to filter on, and so it survives being handed to your team."
+    },
+    {
+      "h": "AI qualifying, chat and voice",
+      "p": "An AI qualifier that asks the few questions a human would, captures a mobile number, and sends a prefilled booking link. Anyone who asks for a person gets one. I have built this in messaging, and built a voice AI agent on a phone line for a client, so the same job can be done on a call."
+    },
+    {
+      "h": "Tracking that reconciles",
+      "p": "Meta Pixel and Conversions API, GA4, Google Ads and Merchant Center. I find why the three platforms disagree, fix the cause, and leave you with numbers you can spend against."
+    }
+  ],
+  "procH": "Clear from the first message to the handover.",
+  "steps": [
+    {
+      "h": "We talk it through",
+      "p": "You tell me what is meant to happen when a lead arrives, and what actually happens instead. No charge for this part."
+    },
+    {
+      "h": "I map it before I build",
+      "p": "Every stage, tag, trigger and exit condition written down and agreed with you first, so we are not discovering the shape halfway through."
+    },
+    {
+      "h": "Build, then break it on purpose",
+      "p": "I build it, then test the failures: no-show, wrong number, opt-out, someone replying twice. Those are what break live systems."
+    },
+    {
+      "h": "Handover you can actually use",
+      "p": "A change log with the undo step for everything I touched, plus short notes per workflow so your team can run it without me."
+    }
+  ],
+  "toolH": "What I use daily, and where the edges are.",
+  "toolP": "If a job needs something outside this, I will say so rather than claim it. I learn a tool by building in it.",
+  "tools": [
+    {
+      "h": "CRM & automation",
+      "items": [
+        "GoHighLevel",
+        "Workflows & triggers",
+        "Pipelines & stages",
+        "Tags & custom fields",
+        "Custom values",
+        "Calendars",
+        "Conversation AI",
+        "Agency sub-accounts",
+        "Sub-accounts via API",
+        "Voice AI agents"
+      ]
+    },
+    {
+      "h": "Workflow & integration",
+      "items": [
+        "n8n",
+        "Zapier",
+        "Make",
+        "Webhooks",
+        "HTTP nodes",
+        "Scheduled jobs",
+        "Exception queues",
+        "Python build scripts",
+        "Google Sheets",
+        "Airtable",
+        "Notion"
+      ]
+    },
+    {
+      "h": "Storefront",
+      "items": [
+        "Shopify",
+        "Custom Liquid",
+        "Landing pages",
+        "Embedded calendars",
+        "UTM passthrough",
+        "Sales channels",
+        "Merchant Center"
+      ]
+    },
+    {
+      "h": "Measurement",
+      "items": [
+        "Meta Pixel",
+        "Conversions API",
+        "Event deduplication",
+        "GA4",
+        "Google Ads",
+        "Google Tag",
+        "Meta Ads",
+        "UTM conventions"
+      ]
+    }
+  ],
+  "workH": "Client names shown with permission pending. The mechanisms are exactly as built.",
+  "workP": "I am happy to walk through any of these live, in the account, on a call.",
+  "cases": [
+    {
+      "t": "Coworking operator, two Sydney locations",
+      "tag": "GoHighLevel · Conversation AI · Meta",
+      "hook": "Two sites, one workflow set, no duplicated build",
+      "rows": [
+        {
+          "k": "Situation",
+          "v": [
+            "Enquiries arrived from ads and the website, and the reply depended on whether someone happened to be at a desk. Two locations meant two of everything, and keeping both in step by hand."
+          ]
+        },
+        {
+          "k": "Built",
+          "v": [
+            "One GoHighLevel spine both locations run on: pipeline stages, a tag taxonomy, and appointment workflows for confirm, remind, notify the team, no-show and nurture. Per-location custom values mean one set of workflows serves both sites instead of two copies that slowly drift apart.",
+            "On the front end, Shopify landing pages with the booking calendar embedded and UTM passthrough, so the source of a booking is still readable after the form is submitted.",
+            "Then I rebuilt the top of the funnel. Meta click-to-message ads now open a Messenger or Instagram conversation with an AI qualifier. It asks three questions, captures a mobile number, and sends a prefilled booking link. Anyone who asks to speak to a person skips the questions and gets the link straight away."
+          ]
+        },
+        {
+          "k": "Also",
+          "v": [
+            "I run the same client's Google Ads and Meta campaigns, so I see what happens to a lead before it reaches the CRM."
+          ]
+        }
+      ],
+      "stack": [
+        "GoHighLevel",
+        "Conversation AI",
+        "Shopify Liquid",
+        "Meta Ads",
+        "Google Ads",
+        "Attribution"
+      ]
+    },
+    {
+      "t": "Furniture and homewares retailer on Shopify",
+      "tag": "Tracking forensics",
+      "hook": "Three platforms, three different answers, one cause",
+      "rows": [
+        {
+          "k": "Situation",
+          "v": [
+            "Meta, Google Ads and GA4 each reported a different story, and nobody could say which to believe. Until that is settled, no advertising decision is safe to make."
+          ]
+        },
+        {
+          "k": "Found",
+          "list": [
+            "One real order produced one browser and two server purchase events in Meta. The extra server event had no browser twin, so it could never be deduplicated.",
+            "Google Ads was falling back to a one-dollar purchase value, while add-to-cart passed real amounts. The tag was capable; the purchase step was the gap.",
+            "A tag manager container existed in the account but had never been installed on the storefront. The team believed it was live.",
+            "102 products were missing from Google Shopping. They had never been published to the Google sales channel and had no product category set."
+          ]
+        },
+        {
+          "k": "Built",
+          "v": [
+            "An automated tracking health check that runs every weekday, so the next break is caught in a day rather than a quarter."
+          ]
+        }
+      ],
+      "stack": [
+        "Meta Pixel + CAPI",
+        "GA4",
+        "Google Ads",
+        "Merchant Center",
+        "Shopify",
+        "Scheduled checks"
+      ]
+    },
+    {
+      "t": "Dead-lead reactivation workflow",
+      "tag": "n8n · built as code",
+      "hook": "A workflow you can diff, rebuild and move",
+      "rows": [
+        {
+          "k": "Situation",
+          "v": [
+            "A long list of old leads sitting in a spreadsheet, worth something only if someone contacted them again."
+          ]
+        },
+        {
+          "k": "Built",
+          "v": [
+            "An n8n workflow generated as JSON from a Python build script, reading its leads from Google Sheets, with tests. Building it as code rather than clicking it together means it can be rebuilt, compared version to version, and moved to another account without guesswork."
+          ]
+        }
+      ],
+      "stack": [
+        "n8n",
+        "Python",
+        "Google Sheets",
+        "Webhooks",
+        "Tests"
+      ]
+    },
+    {
+      "t": "Used-vehicle dealer, Google Ads audit",
+      "tag": "Audit",
+      "hook": "A straight answer, not a forty-slide deck",
+      "rows": [
+        {
+          "k": "Situation",
+          "v": [
+            "The owner wanted to know whether the ad spend was working, without wading through a deck to find out."
+          ]
+        },
+        {
+          "k": "Built",
+          "v": [
+            "An audit of campaign structure, search terms and keywords, written up as short findings he could act on the same week, in plain language rather than platform jargon."
+          ]
+        }
+      ],
+      "stack": [
+        "Google Ads",
+        "Search terms analysis",
+        "Landing page mapping"
+      ]
+    }
+  ],
+  "zapsH": "Three Zapier builds, as they actually look on the canvas.",
+  "zapsP": "Screenshots from my own account. Click any one to see it full size.",
+  "zaps": [
+    {
+      "t": "Lead intake, enrichment and priority routing",
+      "meta": "11 steps &middot; 2 paths &middot; Youform, Apollo, Slack, Gmail",
+      "img": "zapier/zap-1.jpg",
+      "alt": "Zapier canvas. A Youform trigger, a Formatter step getting the company URL, a webhook enriching the lead through Apollo, then Paths splitting into a High Priority branch with Google Sheets, Slack, an AI draft and Gmail, and a Low Priority branch that only emails the sales team.",
+      "d": "A form submission arrives through Youform, the company URL is pulled out, and Apollo enriches the lead through a webhook before anything else happens. Paths then split high priority from low: high priority leads are written to Google Sheets, the sales team gets a Slack alert, and AI by Zapier drafts a reply that goes out by Gmail. Low priority leads only notify the team by email, so nobody spends a personal reply on a lead that does not warrant one."
+    },
+    {
+      "t": "Asana task stage drives the whole client lifecycle",
+      "meta": "24 steps &middot; 5 paths &middot; Asana, Drive, Gmail, AI",
+      "img": "zapier/zap-2.jpg",
+      "alt": "Zapier canvas. An Asana updated-task trigger feeding five paths named Ready to Start, No Response, Quoted, Approved, and Paid and Closed, each running its own chain of Drive, Gmail, delay, filter and AI steps.",
+      "d": "One Asana trigger watches for a task changing stage, and five paths handle what each stage actually needs. Ready to Start creates the Drive folder and the content task, Approved pulls the PDF and sends an AI-written welcome, and Paid and Closed sends a personalised recommendation. The careful part is the follow-up branches: after the first email there is a delay, then a Gmail search and a filter, so the second chase only sends if the client has not already replied."
+    },
+    {
+      "t": "One video becomes a week of content",
+      "meta": "13 steps &middot; loop &middot; Drive, AI, Facebook, LinkedIn",
+      "img": "zapier/zap-3.jpg",
+      "alt": "Zapier canvas. A Google Drive new-file trigger, a filter, AI transcription of the video, AI blog post generation, then Looping by Zapier feeding two paths that each post to Facebook Pages and LinkedIn.",
+      "d": "A video dropped into a Google Drive folder is filtered, transcribed by AI, and turned into blog posts. Looping by Zapier then walks each generated post through paths and publishes it to Facebook Pages and LinkedIn. One recording becomes several posts without anyone copying and pasting between tabs."
+    }
+  ],
+  "faqH": "Questions people usually ask me.",
+  "faq": [
+    {
+      "q": "What do you actually build?",
+      "a": "Systems that catch an enquiry and carry it to a booking without anyone having to remember. In practice that means GoHighLevel pipelines, tags and workflows, an AI qualifier in messaging where it helps, landing pages with the calendar embedded, and the tracking underneath so you can tell which ads are working."
+    },
+    {
+      "q": "Are these real client systems or practice projects?",
+      "a": "Real, and running in production for paying clients. I would rather show you a live account on a screen share than send you a folder of screenshots."
+    },
+    {
+      "q": "Why does the ad tracking side matter if I am hiring for CRM work?",
+      "a": "Because a lead has usually been through an ad, a pixel and a form before your CRM ever sees it. When those are broken, the CRM inherits the mess and the reporting never adds up. Knowing both ends means I can find the cause rather than patch the symptom."
+    },
+    {
+      "q": "Can you fix an automation someone else built?",
+      "a": "Yes, and it is a lot of what I do. I start by tracing one real lead end to end rather than reading the whole account, because the break usually shows itself within a few steps."
+    },
+    {
+      "q": "Will I be able to manage it after you are done?",
+      "a": "That is the point. I back up before I change anything, keep a change log with the step to undo each change, and hand over short notes per workflow. If you would rather I stay on to run it, I am happy to, but you should not be stuck with me."
+    },
+    {
+      "q": "Do you use Zapier or Make?",
+      "a": "Not hands on, so I will not claim them. My integration work is in n8n, which covers the same ground. If a project needs Zapier or Make specifically, say so and we can talk about whether I am the right fit."
+    },
+    {
+      "q": "What does it cost?",
+      "a": "$20 an hour, or a fixed price per project when the scope is clear. For larger builds I prefer milestones: design and approval, then build, then testing and handover, so you are never paying ahead of something you have seen."
+    },
+    {
+      "q": "What time zone are you in, and when can you start?",
+      "a": "I am in the Philippines and my schedule is flexible, so I work to your hours. I have about 40 hours a week available and can usually start straight away."
+    },
+    {
+      "q": "How do we start?",
+      "a": "Send me one account you are not happy with. No client name needed. Tell me what is meant to happen when a lead comes in, and I will tell you what I would fix first, before you commit to anything."
+    }
+  ],
+  "ctH": "Send me one account you are not happy with.",
+  "ctP": "No client name needed. Tell me what is meant to happen when a lead comes in, and I will tell you what I would fix first, before you commit to anything. If that is useful, we can talk about the rest. If it is not, you have lost nothing.",
+  "email": "bryanmarloesguerra@gmail.com",
+  "upwork": "",
+  "ojph": "",
+  "loc": "Philippines · working with clients in Australia, the US and the UK",
+  "rate": "$20/hour · fixed price per project · remote",
+  "caseDia": [
+    {
+      "cap": "Both sites run on the same set of appointment workflows. What differs per site lives in custom values, so there is one copy to keep right, not two that drift apart."
+    },
+    {
+      "cap": "One real order produced three purchase events in Meta. The browser event and one server event paired up and were counted once, but the extra server event had no browser twin, so nothing could match it and the order was counted again."
+    },
+    {
+      "cap": "A Python script writes the workflow as a file, tests check that file, then n8n runs it with leads from Google Sheets. Because it is a file, it can be rebuilt, compared version to version, and moved to another account."
+    },
+    {
+      "cap": ""
+    }
+  ],
+  "github": "github.com/BRESG"
+}
+</script>
+
+<header class="mast"><div class="wrap">
+  <div class="logo" id="logo"></div>
+  <nav>
+    <a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a>
+    <a href="#tools">Tools</a><a href="#work">Work</a><a href="#zaps">Zaps</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+  </nav>
+</div></header>
+
+<main id="app"></main>
+
+<div id="bar" hidden>
+  <span id="msg">Edit mode. Click any text to change it.</span>
+  <span class="sp"></span>
+  <button id="cancel" type="button">Cancel</button>
+  <button id="save" class="p" type="button">Save changes</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var PRISTINE = "<!doctype html>\n" + document.documentElement.outerHTML;
+  var raw = document.getElementById("data").textContent;
+  var D;
+  try { D = JSON.parse(raw); } catch(e){ D = null; }
+  if(!D){ document.getElementById("app").textContent = "Content failed to load."; return; }
+
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c]; }); }
+  // data-e marks an editable text node and names its path in D
+  function ed(path, s, tag, cls){
+    tag = tag || "span";
+    return "<"+tag+(cls?' class="'+cls+'"':"")+' data-e="'+esc(path)+'">'+esc(s)+"</"+tag+">";
+  }
+  function get(path){
+    var p = path.split("."), v = D, i;
+    for(i=0;i<p.length;i++){ if(v==null) return ""; v = v[/^\d+$/.test(p[i])?Number(p[i]):p[i]]; }
+    return v==null?"":v;
+  }
+  function set(path, val){
+    var p = path.split("."), v = D, i, k;
+    for(i=0;i<p.length-1;i++){ k = /^\d+$/.test(p[i])?Number(p[i]):p[i]; v = v[k]; }
+    k = p[p.length-1]; v[/^\d+$/.test(k)?Number(k):k] = val;
+  }
+
+  var SVG = '<svg viewBox="0 0 980 214" role="img" aria-label="Flow diagram. A Meta message ad opens a direct message. An AI qualifier asks three questions and captures a mobile number, then sends a prefilled booking link for a short call, and the contact moves to a Booked stage. A request to speak to a person skips the questions and sends the link immediately.">'
+  + '<defs>'
+  + '<marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--muted)"/></marker>'
+  + '<marker id="ara" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--amber)"/></marker>'
+  + '</defs>'
+  + '<g font-family="JetBrains Mono, monospace" font-size="11.5">'
+  + '<text x="6" y="24" fill="var(--muted)" font-size="10.5" letter-spacing="1.5">TWO LOCATIONS &#183; ONE WORKFLOW SET &#183; PER-LOCATION CUSTOM VALUES</text>'
+  + '<rect x="6" y="50" width="176" height="58" rx="4" fill="var(--panel2)" stroke="var(--line)"/>'
+  + '<text x="22" y="74" fill="var(--ink)" font-size="12.5">Meta message ad</text>'
+  + '<text x="22" y="92" fill="var(--muted)">click to Messenger</text>'
+  + '<line x1="190" y1="79" x2="214" y2="79" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#ar)"/>'
+  + '<rect x="222" y="38" width="186" height="82" rx="4" fill="var(--bg)" stroke="var(--jade)" stroke-width="1.6"/>'
+  + '<text x="238" y="62" fill="var(--ink)" font-size="12.5">AI qualifier</text>'
+  + '<text x="238" y="81" fill="var(--muted)">3 questions</text>'
+  + '<text x="238" y="98" fill="var(--muted)">captures mobile</text>'
+  + '<text x="238" y="112" fill="var(--jade)" font-size="10">GoHighLevel Conversation AI</text>'
+  + '<line x1="416" y1="79" x2="446" y2="79" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#ar)"/>'
+  + '<rect x="454" y="50" width="176" height="58" rx="4" fill="var(--panel2)" stroke="var(--line)"/>'
+  + '<text x="470" y="74" fill="var(--ink)" font-size="12.5">Prefilled booking</text>'
+  + '<text x="470" y="92" fill="var(--muted)">name + number filled</text>'
+  + '<line x1="638" y1="79" x2="668" y2="79" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#ar)"/>'
+  + '<rect x="676" y="50" width="164" height="58" rx="4" fill="var(--panel2)" stroke="var(--line)"/>'
+  + '<text x="692" y="74" fill="var(--ink)" font-size="12.5">Short call</text>'
+  + '<text x="692" y="92" fill="var(--muted)">office manager</text>'
+  + '<line x1="848" y1="79" x2="876" y2="79" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#ar)"/>'
+  + '<rect x="884" y="50" width="90" height="58" rx="4" fill="var(--bg)" stroke="var(--line)"/>'
+  + '<text x="900" y="74" fill="var(--ink)" font-size="12.5">Booked</text>'
+  + '<text x="900" y="92" fill="var(--muted)">stage</text>'
+  + '</g>'
+  + '<g font-family="JetBrains Mono, monospace" font-size="11">'
+  + '<path d="M315,128 L315,168 L545,168" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3"/>'
+  + '<path d="M545,168 L545,116" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ara)"/>'
+  + '<text x="324" y="187" fill="var(--amber)">&#8220;Can I talk to someone?&#8221; &#8594; skip the questions, send the link straight away</text>'
+  + '</g></svg>';
+
+  var CASEDIA = {
+    0: '<svg viewBox="0 0 980 214" role="img" aria-label="A booking at either site flows through one shared set of appointment workflows: confirm, remind, notify the team, no-show and nurture. A block of per-location custom values, tagged location 1 and location 2, feeds every workflow from above, and a dashed amber path loops the no-show and nurture path back round to a new booking."><defs><marker id="bar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--muted)"/></marker><marker id="bamb" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--amber)"/></marker></defs><g font-family="JetBrains Mono, monospace" font-size="11.5"><text x="6" y="16" fill="var(--muted)" font-size="10.5" letter-spacing="1.5">ONE WORKFLOW SET &#183; TWO LOCATIONS &#183; DIFFERENCES LIVE IN CUSTOM VALUES</text><rect x="170" y="26" width="802" height="42" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="186" y="52" fill="var(--ink)" font-size="12.5">Per-location custom values</text><text x="404" y="52" fill="var(--muted)">one set of workflows, not two</text><rect x="740" y="37" width="88" height="22" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="754" y="52" fill="var(--muted)" font-size="10">location 1</text><rect x="848" y="37" width="88" height="22" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="862" y="52" fill="var(--muted)" font-size="10">location 2</text><line x1="237" y1="74" x2="237" y2="94" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><line x1="401" y1="74" x2="401" y2="94" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><line x1="565" y1="74" x2="565" y2="94" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><line x1="735" y1="74" x2="735" y2="88" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><line x1="905" y1="74" x2="905" y2="94" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="6" y="102" width="134" height="56" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="22" y="125" fill="var(--ink)" font-size="12.5">Booking made</text><text x="22" y="143" fill="var(--muted)">either site</text><line x1="146" y1="130" x2="163" y2="130" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="170" y="102" width="134" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="186" y="125" fill="var(--ink)" font-size="12.5">Confirm</text><text x="186" y="143" fill="var(--muted)">contact told</text><line x1="310" y1="130" x2="327" y2="130" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="334" y="102" width="134" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="350" y="125" fill="var(--ink)" font-size="12.5">Remind</text><text x="350" y="143" fill="var(--muted)">contact nudged</text><line x1="474" y1="130" x2="491" y2="130" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="498" y="102" width="134" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="514" y="125" fill="var(--ink)" font-size="12.5">Notify team</text><text x="514" y="143" fill="var(--muted)">team told</text><line x1="638" y1="130" x2="655" y2="130" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="662" y="96" width="146" height="68" rx="4" fill="var(--bg)" stroke="var(--jade)" stroke-width="1.6"/><text x="678" y="119" fill="var(--ink)" font-size="12.5">No-show</text><text x="678" y="137" fill="var(--muted)">tagged, not lost</text><text x="678" y="155" fill="var(--jade)" font-size="10">shared, not copied</text><line x1="814" y1="130" x2="831" y2="130" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#bar)"/><rect x="838" y="102" width="134" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="854" y="125" fill="var(--ink)" font-size="12.5">Nurture</text><text x="854" y="143" fill="var(--muted)">stays in touch</text></g><g font-family="JetBrains Mono, monospace" font-size="11"><path d="M905,160 L905,186 L73,186" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3"/><path d="M73,186 L73,164" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#bamb)"/><text x="90" y="204" fill="var(--amber)">no-show &#8594; nurture &#8594; re-book</text></g></svg>',
+    1: '<svg viewBox="0 0 980 296" role="img" aria-label="Flow diagram showing one real Shopify order producing three purchase events in Meta: one browser event from the Meta pixel and two server events from the Meta Conversions API. The browser event and one server event join together and are deduplicated so the order is counted once. The second, extra server event has no browser twin, so a dashed broken path leads it to an orphan result with nothing to match against, and the order is counted a second time."><defs><marker id="tar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--muted)"/></marker><marker id="tarj" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--jade)"/></marker><marker id="tarr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--rose)"/></marker></defs><g font-family="JetBrains Mono, monospace" font-size="11.5"><text x="6" y="24" fill="var(--muted)" font-size="10.5" letter-spacing="1.5">ONE ORDER &#183; THREE PURCHASE EVENTS &#183; ONE ORPHAN</text><rect x="6" y="116" width="206" height="64" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="22" y="136" fill="var(--ink)" font-size="12.5">1 real order</text><text x="22" y="153" fill="var(--muted)">Shopify checkout</text><text x="22" y="170" fill="var(--muted)" font-size="10">should be counted once</text><line x1="220" y1="148" x2="244" y2="148" stroke="var(--muted)" stroke-width="1.4"/><line x1="244" y1="72" x2="244" y2="148" stroke="var(--muted)" stroke-width="1.4"/><line x1="244" y1="72" x2="292" y2="72" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#tar)"/><line x1="244" y1="148" x2="292" y2="148" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#tar)"/><rect x="300" y="40" width="206" height="64" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="316" y="60" fill="var(--ink)" font-size="12.5">Browser event</text><text x="316" y="77" fill="var(--muted)">Meta pixel</text><text x="316" y="94" fill="var(--muted)" font-size="10">can be matched</text><rect x="300" y="116" width="206" height="64" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="316" y="136" fill="var(--ink)" font-size="12.5">Server event</text><text x="316" y="153" fill="var(--muted)">Meta Conversions API</text><text x="316" y="170" fill="var(--muted)" font-size="10">can be matched</text><rect x="300" y="192" width="206" height="64" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="316" y="212" fill="var(--ink)" font-size="12.5">Extra server event</text><text x="316" y="229" fill="var(--muted)">Meta Conversions API</text><text x="316" y="246" fill="var(--rose)" font-size="10">no browser twin</text><path d="M514,72 L620,72 L620,110" fill="none" stroke="var(--jade)" stroke-width="1.4"/><path d="M514,148 L620,148 L620,110" fill="none" stroke="var(--jade)" stroke-width="1.4"/><circle cx="620" cy="110" r="3" fill="var(--jade)"/><line x1="620" y1="110" x2="726" y2="110" stroke="var(--jade)" stroke-width="1.4" marker-end="url(#tarj)"/><rect x="734" y="78" width="240" height="64" rx="4" fill="var(--bg)" stroke="var(--jade)" stroke-width="1.6"/><text x="750" y="98" fill="var(--ink)" font-size="12.5">Deduplicated</text><text x="750" y="115" fill="var(--muted)">browser + server matched</text><text x="750" y="132" fill="var(--jade)" font-size="10">counted once</text><rect x="734" y="192" width="240" height="64" rx="4" fill="var(--bg)" stroke="var(--rose)" stroke-width="1.6"/><text x="750" y="212" fill="var(--ink)" font-size="12.5">Orphan server event</text><text x="750" y="229" fill="var(--muted)">nothing to match against</text><text x="750" y="246" fill="var(--rose)" font-size="10">counted a second time</text></g><g font-family="JetBrains Mono, monospace" font-size="11"><line x1="244" y1="148" x2="244" y2="224" stroke="var(--rose)" stroke-width="1.4" stroke-dasharray="4 3"/><line x1="244" y1="224" x2="292" y2="224" stroke="var(--rose)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#tarr)"/><line x1="514" y1="224" x2="726" y2="224" stroke="var(--rose)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#tarr)"/><text x="300" y="282" fill="var(--rose)">no browser twin &#8594; nothing to match against &#8594; the order is counted twice</text></g></svg>',
+    2: '<svg viewBox="0 0 980 258" role="img" aria-label="A Python build script generates a workflow.json file. Tests check that JSON before it runs. n8n runs the workflow, and Google Sheets supplies the leads. Because the workflow is a file, it can be rebuilt, compared version to version, and moved to another account, and a dashed return path shows that changing the script regenerates the file instead of clicking it together again."><defs><marker id="nar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--muted)"/></marker><marker id="namb" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L8,4.5 L0,8 z" fill="var(--amber)"/></marker></defs><g font-family="JetBrains Mono, monospace" font-size="11.5"><text x="6" y="22" fill="var(--muted)" font-size="10.5" letter-spacing="1.5">BUILT AS CODE &#183; JSON ARTEFACT &#183; REBUILD, DIFF, MOVE</text><rect x="217" y="40" width="240" height="50" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="233" y="64" fill="var(--ink)" font-size="12.5">Tests</text><text x="233" y="82" fill="var(--muted)">check the JSON before it runs</text><line x1="337" y1="90" x2="337" y2="112" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#nar)"/><rect x="484" y="40" width="176" height="50" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="500" y="64" fill="var(--ink)" font-size="12.5">Google Sheets</text><text x="500" y="82" fill="var(--muted)">where the leads live</text><line x1="572" y1="90" x2="572" y2="126" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#nar)"/><rect x="6" y="128" width="186" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="22" y="152" fill="var(--ink)" font-size="12.5">Python build script</text><text x="22" y="170" fill="var(--muted)">generates the JSON</text><line x1="200" y1="156" x2="222" y2="156" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#nar)"/><rect x="230" y="114" width="214" height="84" rx="4" fill="var(--bg)" stroke="var(--jade)" stroke-width="1.6"/><text x="246" y="138" fill="var(--ink)" font-size="12.5">workflow.json</text><text x="246" y="157" fill="var(--muted)">generated, not assembled</text><text x="246" y="175" fill="var(--muted)">one artefact, versioned</text><text x="246" y="190" fill="var(--jade)" font-size="10">the n8n workflow as a file</text><line x1="452" y1="156" x2="476" y2="156" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#nar)"/><rect x="484" y="128" width="176" height="56" rx="4" fill="var(--panel2)" stroke="var(--line)"/><text x="500" y="152" fill="var(--ink)" font-size="12.5">n8n</text><text x="500" y="170" fill="var(--muted)">runs the workflow</text><line x1="668" y1="156" x2="690" y2="156" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#nar)"/><rect x="698" y="112" width="262" height="88" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="714" y="136" fill="var(--ink)" font-size="12.5">Because it is a file</text><text x="714" y="156" fill="var(--muted)">rebuild it from the script</text><text x="714" y="174" fill="var(--muted)">diff one version to the next</text><text x="714" y="192" fill="var(--muted)">move it to another account</text></g><g font-family="JetBrains Mono, monospace" font-size="11"><path d="M829,200 L829,224 L99,224 L99,188" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#namb)"/><text x="118" y="244" fill="var(--amber)">change the script, regenerate the file &#8594; no clicking it together again</text></g></svg>'
+  };
+
+  function render(){
+    document.getElementById("logo").innerHTML = ed("name","" + get("name"), "span") + '<b>.</b>';
+    var h = "";
+
+    // hero
+    h += '<div class="hero"><div class="wrap">'
+      + '<span class="avail"><span class="dot"></span>' + ed("avail",get("avail")) + '</span>'
+      + '<h1>' + ed("h1a",get("h1a")) + ' <em>' + ed("h1b",get("h1b")) + '</em></h1>'
+      + '<p class="kicker">' + ed("kicker",get("kicker")) + '</p>'
+      + '<p class="lede">' + ed("lede",get("lede")) + '</p>'
+      + '<div class="cta">'
+      + '<a class="btn p" href="#contact">' + ed("cta1",get("cta1")) + '</a>'
+      + '<a class="btn s" href="#work">' + ed("cta2",get("cta2")) + '</a>'
+      + '</div></div></div>';
+
+    // stats
+    h += '<div class="stats">';
+    (D.stats||[]).forEach(function(s,i){
+      h += '<div class="stat"><b>' + ed("stats."+i+".n",s.n) + '</b><span>' + ed("stats."+i+".l",s.l) + '</span></div>';
+    });
+    h += '</div>';
+
+    // diagram
+    h += '<figure class="dia" style="margin:0"><div class="wrap">'
+      + '<p class="num"><b>00</b> / A system I run today</p>'
+      + '<div class="sx">' + SVG + '</div>'
+      + '<figcaption>' + ed("diaCap",get("diaCap")) + '</figcaption>'
+      + '</div></figure>';
+
+    // about
+    h += '<section id="about"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>01</b> / About</p>'
+      + '<h2>' + ed("aboutH",get("aboutH")) + '</h2></div>'
+      + '<div style="max-width:68ch">'
+      + '<p style="margin-top:0">' + ed("about1",get("about1")) + '</p>'
+      + '<p>' + ed("about2",get("about2")) + '</p>'
+      + '<p>' + ed("about3",get("about3")) + '</p>'
+      + '</div></div></section>';
+
+    // services
+    h += '<section id="services"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>02</b> / Services</p>'
+      + '<h2>' + ed("svcH",get("svcH")) + '</h2></div><div class="grid4">';
+    (D.services||[]).forEach(function(s,i){
+      h += '<div class="card"><span class="ix">0'+(i+1)+'</span><h3>' + ed("services."+i+".h",s.h) + '</h3><p>' + ed("services."+i+".p",s.p) + '</p></div>';
+    });
+    h += '</div></div></section>';
+
+    // process
+    h += '<section id="process"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>03</b> / How I work</p>'
+      + '<h2>' + ed("procH",get("procH")) + '</h2></div><div class="steps">';
+    (D.steps||[]).forEach(function(s,i){
+      h += '<div class="step"><span class="ix">0'+(i+1)+'</span><h3>' + ed("steps."+i+".h",s.h) + '</h3><p>' + ed("steps."+i+".p",s.p) + '</p></div>';
+    });
+    h += '</div></div></section>';
+
+    // tools
+    h += '<section id="tools"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>04</b> / Toolkit</p>'
+      + '<h2>' + ed("toolH",get("toolH")) + '</h2>'
+      + '<p>' + ed("toolP",get("toolP")) + '</p></div><div class="tools">';
+    (D.tools||[]).forEach(function(g,i){
+      h += '<div><h3>' + ed("tools."+i+".h",g.h) + '</h3><div class="chips">';
+      (g.items||[]).forEach(function(it,j){ h += ed("tools."+i+".items."+j, it); });
+      h += '</div></div>';
+    });
+    h += '</div></div></section>';
+
+    // work
+    h += '<section id="work"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>05</b> / Selected work</p>'
+      + '<h2>' + ed("workH",get("workH")) + '</h2>'
+      + '<p>' + ed("workP",get("workP")) + '</p></div>';
+    (D.cases||[]).forEach(function(c,i){
+      h += '<article class="case"><div class="ctop"><h3>' + ed("cases."+i+".t",c.t) + '</h3><span class="tag">' + ed("cases."+i+".tag",c.tag) + '</span></div>'
+        + '<p class="hook">' + ed("cases."+i+".hook",c.hook) + '</p>'
+        + (CASEDIA[i] ? '<figure class="cdia"><div class="sx">' + CASEDIA[i] + '</div><figcaption>'
+            + ed("caseDia."+i+".cap", ((D.caseDia && D.caseDia[i] && D.caseDia[i].cap) || "")) + '</figcaption></figure>' : '')
+        + '<dl class="rows">';
+      (c.rows||[]).forEach(function(r,j){
+        h += '<div class="row"><dt>' + ed("cases."+i+".rows."+j+".k",r.k) + '</dt><dd>';
+        if(r.list){ h += '<ul class="found">';
+          r.list.forEach(function(x,k){ h += '<li>' + ed("cases."+i+".rows."+j+".list."+k, x) + '</li>'; });
+          h += '</ul>';
+        } else {
+          (r.v||[]).forEach(function(x,k){ h += '<p>' + ed("cases."+i+".rows."+j+".v."+k, x) + '</p>'; });
+        }
+        h += '</dd></div>';
+      });
+      h += '</dl><div class="chips" style="margin-top:18px">';
+      (c.stack||[]).forEach(function(s,j){ h += ed("cases."+i+".stack."+j, s); });
+      h += '</div></article>';
+    });
+    h += '</div></section>';
+
+    // zapier builds
+    h += '<section id="zaps"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>06</b> / Zapier builds</p>'
+      + '<h2>' + ed("zapsH",get("zapsH")) + '</h2>'
+      + '<p>' + ed("zapsP",get("zapsP")) + '</p></div>';
+    (D.zaps||[]).forEach(function(z,i){
+      h += '<article class="zap">'
+        + '<div class="zap-head"><h3>' + ed("zaps."+i+".t",z.t) + '</h3>'
+        + '<span class="zap-meta">' + z.meta + '</span></div>'
+        + '<p class="zap-d">' + ed("zaps."+i+".d",z.d) + '</p>'
+        + '<a class="zap-img" href="' + esc(z.img) + '" target="_blank" rel="noopener">'
+        + '<img src="' + esc(z.img) + '" alt="' + esc(z.alt) + '" loading="lazy">'
+        + '</a></article>';
+    });
+    h += '</div></section>';
+
+    // faq
+    h += '<section id="faq"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>07</b> / FAQ</p>'
+      + '<h2>' + ed("faqH",get("faqH")) + '</h2></div><div>';
+    (D.faq||[]).forEach(function(f,i){
+      h += '<details><summary>' + ed("faq."+i+".q",f.q) + '</summary><p>' + ed("faq."+i+".a",f.a) + '</p></details>';
+    });
+    h += '</div></div></section>';
+
+    // contact
+    var mail = String(get("email")||"");
+    h += '<section class="contact" id="contact"><div class="wrap">'
+      + '<p class="num"><b>08</b> / Contact</p>'
+      + '<h2>' + ed("ctH",get("ctH")) + '</h2>'
+      + '<p class="l">' + ed("ctP",get("ctP")) + '</p>'
+      + '<div class="clist">'
+      + '<div><h4>Email</h4><a href="mailto:' + esc(mail) + '">' + ed("email",mail) + '</a></div>'
+      + (get("github") ? '<div><h4>Code</h4><a href="https://' + esc(get("github")) + '" target="_blank" rel="noopener">' + ed("github",get("github")) + '</a></div>' : '')
+      + (get("upwork") ? '<div><h4>Upwork</h4><a href="' + esc(get("upwork")) + '">' + ed("upwork",get("upwork")) + '</a></div>' : '')
+      + (get("ojph") ? '<div><h4>OnlineJobs.ph</h4><a href="' + esc(get("ojph")) + '">' + ed("ojph",get("ojph")) + '</a></div>' : '')
+      + '<div><h4>Location</h4><span class="v">' + ed("loc",get("loc")) + '</span></div>'
+      + '</div>'
+      + '<div class="foot"><span>' + ed("name2", get("name")) + ' · Automation &amp; CRM systems</span><span>' + ed("rate",get("rate")) + '</span></div>'
+      + '</div></section>';
+
+    document.getElementById("app").innerHTML = h;
+  }
+
+  render();
+
+  // ---- edit mode (only for viewers who can publish) ----
+  var editing = false, snapshot = null, api = null;
+  var bar = document.getElementById("bar");
+  var msg = document.getElementById("msg");
+  var saveBtn = document.getElementById("save");
+  var cancelBtn = document.getElementById("cancel");
+
+  function nodes(){ return Array.prototype.slice.call(document.querySelectorAll("[data-e]")); }
+
+  function startEdit(){
+    editing = true;
+    snapshot = JSON.stringify(D);
+    document.body.classList.add("editing");
+    bar.hidden = false;
+    msg.textContent = "Edit mode. Click any text to change it.";
+    nodes().forEach(function(n){ n.setAttribute("contenteditable","true"); });
+  }
+  function stopEdit(){
+    editing = false;
+    document.body.classList.remove("editing");
+    bar.hidden = true;
+    nodes().forEach(function(n){ n.removeAttribute("contenteditable"); });
+  }
+  function collect(){
+    nodes().forEach(function(n){
+      var p = n.getAttribute("data-e");
+      if(p === "name2") p = "name";
+      set(p, (n.innerText||"").replace(/\s+\n/g,"\n").trim());
+    });
+  }
+
+  cancelBtn.addEventListener("click", function(){
+    try { D = JSON.parse(snapshot); } catch(e){}
+    stopEdit(); render(); addEditButton();
+  });
+
+  saveBtn.addEventListener("click", function(){
+    if(!api) return;
+    collect();
+    saveBtn.disabled = true; cancelBtn.disabled = true;
+    msg.textContent = "Saving...";
+    var next = PRISTINE.replace(
+      /(<script type="application\/json" id="data">)([\s\S]*?)(<\/script>)/,
+      function(_, a, __, c){ return a + "\n" + JSON.stringify(D, null, 2) + "\n" + c; }
+    );
+    api.publish(next).then(function(){
+      msg.textContent = "Saved. The page is reloading to the new version.";
+    }).catch(function(err){
+      saveBtn.disabled = false; cancelBtn.disabled = false;
+      var code = err && err.code ? err.code : "";
+      msg.textContent = (code === "conflict")
+        ? "Someone else saved first. Reload and try again."
+        : "Could not save" + (code ? " (" + code + ")" : "") + ". Your text is still on screen.";
+    });
+  });
+
+  function addEditButton(){
+    if(document.getElementById("editBtn")) return;
+    var b = document.createElement("button");
+    b.id = "editBtn"; b.type = "button"; b.textContent = "Edit this page";
+    b.style.cssText = "position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:55;font-family:var(--mono);font-size:12.5px;padding:10px 16px;border-radius:4px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer";
+    b.addEventListener("click", function(){ b.remove(); startEdit(); });
+    document.body.appendChild(b);
+  }
+
+  if(window.claude && typeof window.claude.use === "function"){
+    window.claude.use("artifact").then(function(a){
+      if(!a) return;            // viewer cannot publish: page stays read-only
+      api = a;
+      addEditButton();
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
