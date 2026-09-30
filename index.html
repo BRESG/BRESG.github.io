@@ -84,6 +84,19 @@
   .book{margin:26px 0 30px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
   .book iframe{display:block;width:100%;height:720px;border:0}
   .book .bhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:16px 20px 0}
+  /* offer */
+  .offer{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px 28px}
+  .offer-top{display:flex;flex-wrap:wrap;gap:14px 30px;align-items:baseline;border-bottom:1px solid var(--line2);padding-bottom:20px}
+  .offer-top h3{font-size:clamp(19px,2.4vw,23px);font-weight:700}
+  .offer-meta{display:flex;gap:28px;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+  .offer-meta b{display:block;color:var(--jade);font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;margin-top:5px}
+  .offer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:26px 34px;margin-top:26px}
+  .offer-cols h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:0 0 13px}
+  .offer-cols ul{margin:0;padding:0;list-style:none}
+  .offer-cols li{position:relative;padding-left:18px;margin-bottom:10px;font-size:15.5px;line-height:1.5}
+  .offer-cols li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--jade)}
+  .offer-cols .no li:before{background:var(--rose)}
+  .offer-close{margin:26px 0 0;font-size:16px}
   .cdia .dlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
 
   /* services */
@@ -479,11 +492,11 @@
     },
     {
       "q": "Do you use Zapier or Make?",
-      "a": "Not hands on, so I will not claim them. My integration work is in n8n, which covers the same ground. If a project needs Zapier or Make specifically, say so and we can talk about whether I am the right fit."
+      "a": "Yes, both, alongside n8n and GoHighLevel. There are three of my own Zapier builds further up this page, with the canvases, so you can see the shape of them rather than take my word for it."
     },
     {
       "q": "What does it cost?",
-      "a": "$20 an hour, or a fixed price per project when the scope is clear. For larger builds I prefer milestones: design and approval, then build, then testing and handover, so you are never paying ahead of something you have seen."
+      "a": "The lead qualification and follow-up build starts at $2,000, and the section above lists what is in it and what is not. For anything else I quote a fixed price once the scope is clear. Larger builds are split into milestones: design and approval, then build, then testing and handover, so you are never paying ahead of something you have seen."
     },
     {
       "q": "What time zone are you in, and when can you start?",
@@ -516,7 +529,35 @@
     }
   ],
   "github": "github.com/BRESG",
-  "calendar": ""
+  "calendar": "",
+  "offerH": "The build I have done enough times to put a price on.",
+  "offerP": "I have built these pieces for three paying clients on my own GoHighLevel account, and the last fixed price build came back five out of five. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
+  "offerName": "Custom AI lead qualification and follow-up system",
+  "offerPrice": "From $2,000",
+  "offerPriceNote": "I give you the final number before I start and it does not move after that. Larger builds are split into milestones, so you are never paying ahead of something you have seen.",
+  "offerTime": "21 days",
+  "offerTimeNote": "From the day I have access. The building takes less than that. The rest is testing it in your live account, including the ways it can fail.",
+  "offerIn": [
+    "The GoHighLevel spine: pipeline and stages, a tag taxonomy, custom fields and custom values, so the same words mean the same thing everywhere.",
+    "Appointment workflows: confirm, remind, notify your team, no-show, nurture.",
+    "Speed to lead, so a new enquiry gets an answer without anyone having to remember. On one client's account the tagging workflow has carried 187 contacts and speed to lead 62.",
+    "An AI qualifier in your messaging. It asks a few questions, captures a mobile number and sends a prefilled booking link. Anyone who asks for a person gets one.",
+    "A WhatsApp reply layer with branches for pricing, samples, later and just browsing, plus a fallback for anything it does not recognise and an opt-out.",
+    "A landing page with your booking calendar embedded and the campaign values carried through, so you can still tell where a booking came from after the form is submitted.",
+    "The tracking underneath: Meta Pixel and Conversions API, GA4, Google Ads conversions, so the numbers reconcile."
+  ],
+  "offerOut": [
+    "A number. No revenue lift, no return on ad spend, no conversion rate. I can show you what I built and what it has handled. What it earns depends on your offer and your traffic.",
+    "Running your ads. I do that work and I am happy to talk about it, but it is priced separately rather than folded in quietly.",
+    "The GoHighLevel subscription and any message costs. Those stay yours. I build inside your own account, so you own it and nothing is tied to me."
+  ],
+  "offerNeed": [
+    "Admin access to your GoHighLevel account. If you do not have one yet, I set it up in your name and you hold the login.",
+    "Thirty minutes with whoever answers enquiries today, so the AI asks what they already ask.",
+    "Access to whatever you want measured: Meta, GA4, Google Ads, your site. So the tracking can be checked rather than assumed.",
+    "A decision on whose calendar a booking lands in, and what happens when nobody picks up."
+  ],
+  "offerClose": "You get a change log with the undo step for every change I make and short notes per workflow, so your team can run this without me. Pick a time below and bring the account you are least happy with, and I will tell you on the call whether this is the right thing for it."
 }
 </script>
 
@@ -524,7 +565,7 @@
   <div class="logo" id="logo"></div>
   <nav>
     <a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a>
-    <a href="#tools">Tools</a><a href="#work">Work</a><a href="#zaps">Zaps</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    <a href="#tools">Tools</a><a href="#work">Work</a><a href="#zaps">Zaps</a><a href="#faq">FAQ</a><a href="#offer">Pricing</a><a href="#contact">Contact</a>
   </nav>
 </div></header>
 
@@ -726,10 +767,31 @@
     });
     h += '</div></div></section>';
 
+    // offer
+    h += '<section id="offer"><div class="wrap"><div class="sec-h">'
+      + '<p class="num"><b>08</b> / What it costs</p>'
+      + '<h2>' + ed("offerH",get("offerH")) + '</h2>'
+      + '<p>' + ed("offerP",get("offerP")) + '</p></div>'
+      + '<div class="offer"><div class="offer-top">'
+      + '<h3>' + ed("offerName",get("offerName")) + '</h3>'
+      + '<div class="offer-meta"><span>Price<b>' + ed("offerPrice",get("offerPrice")) + '</b></span>'
+      + '<span>Delivery<b>' + ed("offerTime",get("offerTime")) + '</b></span></div></div>'
+      + '<div class="offer-cols">'
+      + '<div><h4>What is in it</h4><ul>';
+    (D.offerIn||[]).forEach(function(x,i){ h += '<li>' + ed("offerIn."+i, x) + '</li>'; });
+    h += '</ul></div><div class="no"><h4>What is not</h4><ul>';
+    (D.offerOut||[]).forEach(function(x,i){ h += '<li>' + ed("offerOut."+i, x) + '</li>'; });
+    h += '</ul></div><div><h4>What I need from you</h4><ul>';
+    (D.offerNeed||[]).forEach(function(x,i){ h += '<li>' + ed("offerNeed."+i, x) + '</li>'; });
+    h += '</ul></div></div>'
+      + '<p class="offer-close">' + ed("offerPriceNote",get("offerPriceNote")) + ' ' + ed("offerTimeNote",get("offerTimeNote")) + '</p>'
+      + '<p class="offer-close">' + ed("offerClose",get("offerClose")) + '</p>'
+      + '</div></div></section>';
+
     // contact
     var mail = String(get("email")||"");
     h += '<section class="contact" id="contact"><div class="wrap">'
-      + '<p class="num"><b>08</b> / Contact</p>'
+      + '<p class="num"><b>09</b> / Contact</p>'
       + '<h2>' + ed("ctH",get("ctH")) + '</h2>'
       + '<p class="l">' + ed("ctP",get("ctP")) + '</p>'
       + (get("calendar")
