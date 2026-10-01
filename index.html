@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Bryan Esguerra builds booking and follow-up systems in GoHighLevel, n8n and Zapier, and fixes the ad tracking behind them.">
 <style>*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Bryan Esguerra</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>GoHighLevel &amp; n8n Automation Systems &mdash; Bryan Esguerra</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://bryanesguerra.com/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root{
     --bg:#0C1A18; --panel:#122522; --panel2:#17302C; --line:#22403B; --line2:#1B3733;
@@ -84,6 +88,9 @@
   .book{margin:26px 0 30px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
   .book iframe{display:block;width:100%;height:720px;border:0}
   .book .bhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:16px 20px 0}
+  .book-alt{margin:-18px 0 30px;font-size:14px;color:var(--muted)}
+  .midcta{margin-top:40px;padding-top:28px;border-top:1px solid var(--line2);display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+  .midcta p{margin:0;font-size:15px;color:var(--muted)}
   /* offer */
   .offer{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px 28px}
   .offer-top{display:flex;flex-wrap:wrap;gap:14px 30px;align-items:baseline;border-bottom:1px solid var(--line2);padding-bottom:20px}
@@ -193,9 +200,9 @@
   "avail": "Available for projects",
   "h1a": "I build the system that answers your leads",
   "h1b": "before you can.",
-  "kicker": "Two live client systems in production. Not course projects.",
+  "kicker": "Eight years in paid media, including Google. Two client systems live in production today.",
   "lede": "Most small businesses lose enquiries in the gap between the ad and the reply. I close that gap. I build booking and follow-up systems in GoHighLevel and n8n, then make the tracking behind them report numbers you can actually trust.",
-  "cta1": "Start a conversation",
+  "cta1": "Book a 30-minute call",
   "cta2": "See the work",
   "stats": [
     {
@@ -211,8 +218,8 @@
       "l": "Products found missing from Shopping"
     },
     {
-      "n": "AU",
-      "l": "Client base"
+      "n": "AU\u00b7US\u00b7UK",
+      "l": "Where my clients are"
     }
   ],
   "diaCap": "The lead-to-booking flow I rebuilt this month for a Sydney coworking operator. Both of their sites run on one set of workflows, separated by custom values rather than duplicated.",
@@ -450,6 +457,8 @@
       "t": "Lead intake, enrichment and priority routing",
       "meta": "11 steps &middot; 2 paths &middot; Youform, Apollo, Slack, Gmail",
       "img": "zapier/zap-1.jpg",
+      "w": 800,
+      "h": 1400,
       "alt": "Zapier canvas. A Youform trigger, a Formatter step getting the company URL, a webhook enriching the lead through Apollo, then Paths splitting into a High Priority branch with Google Sheets, Slack, an AI draft and Gmail, and a Low Priority branch that only emails the sales team.",
       "d": "A form submission arrives through Youform, the company URL is pulled out, and Apollo enriches the lead through a webhook before anything else happens. Paths then split high priority from low: high priority leads are written to Google Sheets, the sales team gets a Slack alert, and AI by Zapier drafts a reply that goes out by Gmail. Low priority leads only notify the team by email, so nobody spends a personal reply on a lead that does not warrant one."
     },
@@ -457,6 +466,8 @@
       "t": "Asana task stage drives the whole client lifecycle",
       "meta": "24 steps &middot; 5 paths &middot; Asana, Drive, Gmail, AI",
       "img": "zapier/zap-2.jpg",
+      "w": 1400,
+      "h": 982,
       "alt": "Zapier canvas. An Asana updated-task trigger feeding five paths named Ready to Start, No Response, Quoted, Approved, and Paid and Closed, each running its own chain of Drive, Gmail, delay, filter and AI steps.",
       "d": "One Asana trigger watches for a task changing stage, and five paths handle what each stage actually needs. Ready to Start creates the Drive folder and the content task, Approved pulls the PDF and sends an AI-written welcome, and Paid and Closed sends a personalised recommendation. The careful part is the follow-up branches: after the first email there is a delay, then a Gmail search and a filter, so the second chase only sends if the client has not already replied."
     },
@@ -464,6 +475,8 @@
       "t": "One video becomes a week of content",
       "meta": "13 steps &middot; loop &middot; Drive, AI, Facebook, LinkedIn",
       "img": "zapier/zap-3.jpg",
+      "w": 1008,
+      "h": 1400,
       "alt": "Zapier canvas. A Google Drive new-file trigger, a filter, AI transcription of the video, AI blog post generation, then Looping by Zapier feeding two paths that each post to Facebook Pages and LinkedIn.",
       "d": "A video dropped into a Google Drive folder is filtered, transcribed by AI, and turned into blog posts. Looping by Zapier then walks each generated post through paths and publishes it to Facebook Pages and LinkedIn. One recording becomes several posts without anyone copying and pasting between tabs."
     }
@@ -500,7 +513,7 @@
     },
     {
       "q": "What time zone are you in, and when can you start?",
-      "a": "I am in Japan, which is one hour ahead of Sydney and puts me in the same working day as Australian clients. My schedule is flexible, so I work to your hours. I have about 40 hours a week available and can usually start straight away."
+      "a": "I am in Japan. That is one hour behind Sydney, and two hours behind once Australia is on daylight saving, so my working day sits inside yours. My schedule is flexible, so I work to your hours. I have about 40 hours a week available and can usually start straight away."
     },
     {
       "q": "How do we start?",
@@ -650,6 +663,14 @@
     document.getElementById("logo").innerHTML = ed("name","" + get("name"), "span") + '<b>.</b>';
     var h = "";
 
+    // Where every "book a call" lands. If the calendar is ever removed from the
+    // data, these fall back to the contact section instead of a dead anchor.
+    var BOOKHREF = get("calendar") ? "#book" : "#contact";
+    function midCta(line){
+      return '<div class="midcta"><a class="btn p" href="' + BOOKHREF + '">Book a 30-minute call</a>'
+        + '<p>' + line + '</p></div>';
+    }
+
     // hero
     h += '<div class="hero"><div class="wrap">'
       + '<span class="avail"><span class="dot"></span>' + ed("avail",get("avail")) + '</span>'
@@ -657,7 +678,7 @@
       + '<p class="kicker">' + ed("kicker",get("kicker")) + '</p>'
       + '<p class="lede">' + ed("lede",get("lede")) + '</p>'
       + '<div class="cta">'
-      + '<a class="btn p" href="#contact">' + ed("cta1",get("cta1")) + '</a>'
+      + '<a class="btn p" href="' + BOOKHREF + '">' + ed("cta1",get("cta1")) + '</a>'
       + '<a class="btn s" href="#work">' + ed("cta2",get("cta2")) + '</a>'
       + '</div></div></div>';
 
@@ -740,6 +761,7 @@
       (c.stack||[]).forEach(function(s,j){ h += ed("cases."+i+".stack."+j, s); });
       h += '</div></article>';
     });
+    h += midCta('Bring the account you are least happy with. I will tell you what I would do with it.');
     h += '</div></section>';
 
     // zapier builds
@@ -753,7 +775,8 @@
         + '<span class="zap-meta">' + z.meta + '</span></div>'
         + '<p class="zap-d">' + ed("zaps."+i+".d",z.d) + '</p>'
         + '<a class="zap-img" href="' + esc(z.img) + '" target="_blank" rel="noopener">'
-        + '<img src="' + esc(z.img) + '" alt="' + esc(z.alt) + '" loading="lazy">'
+        + '<img src="' + esc(z.img) + '" alt="' + esc(z.alt) + '" loading="lazy"'
+        + (z.w && z.h ? ' width="' + esc(z.w) + '" height="' + esc(z.h) + '"' : '') + '>'
         + '</a></article>';
     });
     h += '</div></section>';
@@ -786,7 +809,9 @@
     h += '</ul></div></div>'
       + '<p class="offer-close">' + ed("offerPriceNote",get("offerPriceNote")) + ' ' + ed("offerTimeNote",get("offerTimeNote")) + '</p>'
       + '<p class="offer-close">' + ed("offerClose",get("offerClose")) + '</p>'
-      + '</div></div></section>';
+      + '</div>'
+      + midCta('No charge for the call, and no obligation after it.')
+      + '</div></section>';
 
     // contact
     var mail = String(get("email")||"");
@@ -795,8 +820,10 @@
       + '<h2>' + ed("ctH",get("ctH")) + '</h2>'
       + '<p class="l">' + ed("ctP",get("ctP")) + '</p>'
       + (get("calendar")
-          ? '<div class="book"><p class="bhead">Pick a time</p>'
+          ? '<div class="book" id="book"><p class="bhead">Pick a time</p>'
             + '<iframe data-ghl-calendar src="' + esc(get("calendar")) + '" title="Book a call" loading="lazy"></iframe></div>'
+            + '<p class="book-alt">Calendar not loading? Some browsers block it. '
+            + '<a class="book-link" data-ghl-calendar href="' + esc(get("calendar")) + '" target="_blank" rel="noopener">Open the booking page in a new tab</a>.</p>'
           : '')
       + '<div class="clist">'
       + '<div><h4>Email</h4><a href="mailto:' + esc(mail) + '">' + ed("email",mail) + '</a></div>'
@@ -888,5 +915,22 @@
 })();
 </script>
 <script src="ghl-calendar-embed.js"></script>
+<script>
+// The embed script only rewrites an iframe src, so the plain fallback link would
+// otherwise lose the utm_* values and the click id. Copy the decorated src across
+// so a booking made through the fallback still carries where it came from.
+(function(){
+  "use strict";
+  function sync(){
+    var f = document.querySelector('.book iframe[data-ghl-calendar]');
+    var a = document.querySelector('a.book-link[data-ghl-calendar]');
+    if(!f || !a) return;
+    var src = f.getAttribute('src');
+    if(src) a.setAttribute('href', src);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync);
+  else sync();
+})();
+</script>
 </body>
 </html>
