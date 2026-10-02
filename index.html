@@ -10,6 +10,23 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://bryanesguerra.com/">
+
+<!-- What a link to this page looks like when it is pasted into a chat, a proposal or an email. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bryan Esguerra">
+<meta property="og:url" content="https://bryanesguerra.com/">
+<meta property="og:title" content="Bryan Esguerra — GoHighLevel &amp; n8n automation systems">
+<meta property="og:description" content="I build booking and follow-up systems in GoHighLevel, n8n and Zapier, and fix the ad tracking behind them. Two client systems live in production.">
+<meta property="og:image" content="https://bryanesguerra.com/share-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bryan Esguerra. I build the system that answers your leads before you can. GoHighLevel, n8n, Zapier and ad tracking.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bryan Esguerra — GoHighLevel &amp; n8n automation systems">
+<meta name="twitter:description" content="I build booking and follow-up systems in GoHighLevel, n8n and Zapier, and fix the ad tracking behind them. Two client systems live in production.">
+<meta name="twitter:image" content="https://bryanesguerra.com/share-card.jpg">
+<meta name="twitter:image:alt" content="Bryan Esguerra. I build the system that answers your leads before you can. GoHighLevel, n8n, Zapier and ad tracking.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root{
@@ -105,6 +122,14 @@
   .offer-cols .no li:before{background:var(--rose)}
   .offer-close{margin:26px 0 0;font-size:16px}
   .quote{margin:24px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line2);border-left:2px solid var(--jade);border-radius:0 6px 6px 0}
+  .me{display:grid;grid-template-columns:200px 1fr;gap:30px 34px;align-items:start;max-width:980px}
+  .me-solo{max-width:68ch}
+  .me-ph{margin:0;position:relative}
+  .me-ph img{display:block;width:100%;height:auto;border-radius:8px;background:var(--panel2)}
+  .me-ph figcaption{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px;line-height:1.6}
+  .me-tx p:first-child{margin-top:0}
+  @media (max-width:640px){.me{grid-template-columns:150px 1fr;gap:20px}}
+  @media (max-width:430px){.me{grid-template-columns:1fr;gap:18px}.me-ph{max-width:190px}}
   .quote p{margin:0;font-size:16.5px;line-height:1.55;color:var(--ink)}
   .quote cite{display:block;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-style:normal}
   .cdia .dlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
@@ -545,6 +570,9 @@
     }
   ],
   "github": "github.com/BRESG",
+  "photo": "bryan.png",
+  "photoAlt": "Bryan Esguerra, the person you would be working with",
+  "photoCap": "Bryan Esguerra \u00b7 Japan \u00b7 the person who does the work",
   "calendar": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1lIlljuk7utCb3zp7MBN-Lk57qnGk3gugxDMIKWz6y_hZF1zDMZcXZ2nQjpQyriCsJaUL1Lggw?gv=true",
   "offerH": "The build I have done enough times to put a price on.",
   "offerP": "I have built these pieces for paying clients on my own GoHighLevel account, and the last fixed price build came back five out of five. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
@@ -703,11 +731,18 @@
     h += '<section id="about"><div class="wrap"><div class="sec-h">'
       + '<p class="num"><b>01</b> / About</p>'
       + '<h2>' + ed("aboutH",get("aboutH")) + '</h2></div>'
-      + '<div style="max-width:68ch">'
-      + '<p style="margin-top:0">' + ed("about1",get("about1")) + '</p>'
+      + '<div class="' + (get("photo") ? 'me' : 'me-solo') + '">'
+      + (get("photo")
+          ? '<figure class="me-ph"><img src="' + esc(get("photo")) + '" width="371" height="440" loading="lazy"'
+            + ' alt="' + esc(get("photoAlt") || "Bryan Esguerra") + '">'
+            + (get("photoCap") ? '<figcaption>' + ed("photoCap",get("photoCap")) + '</figcaption>' : '')
+            + '</figure>'
+          : '')
+      + '<div class="me-tx">'
+      + '<p>' + ed("about1",get("about1")) + '</p>'
       + '<p>' + ed("about2",get("about2")) + '</p>'
       + '<p>' + ed("about3",get("about3")) + '</p>'
-      + '</div></div></section>';
+      + '</div></div></div></section>';
 
     // services
     h += '<section id="services"><div class="wrap"><div class="sec-h">'
