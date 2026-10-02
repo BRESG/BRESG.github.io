@@ -104,6 +104,9 @@
   .offer-cols li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--jade)}
   .offer-cols .no li:before{background:var(--rose)}
   .offer-close{margin:26px 0 0;font-size:16px}
+  .quote{margin:24px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line2);border-left:2px solid var(--jade);border-radius:0 6px 6px 0}
+  .quote p{margin:0;font-size:16.5px;line-height:1.55;color:var(--ink)}
+  .quote cite{display:block;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-style:normal}
   .cdia .dlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
 
   /* services */
@@ -759,7 +762,14 @@
       });
       h += '</dl><div class="chips" style="margin-top:18px">';
       (c.stack||[]).forEach(function(s,j){ h += ed("cases."+i+".stack."+j, s); });
-      h += '</div></article>';
+      h += '</div>';
+      // A client's own words, shown only when there are some. Never a placeholder.
+      if (c.quote) {
+        h += '<blockquote class="quote"><p>' + ed("cases."+i+".quote", c.quote) + '</p>'
+          + (c.quoteBy ? '<cite>' + ed("cases."+i+".quoteBy", c.quoteBy) + '</cite>' : '')
+          + '</blockquote>';
+      }
+      h += '</article>';
     });
     h += midCta('Bring the account you are least happy with. I will tell you what I would do with it.');
     h += '</div></section>';
