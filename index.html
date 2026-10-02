@@ -73,7 +73,7 @@
   .logo{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
   .logo b{color:var(--jade);font-weight:500}
   .mast nav{display:flex;flex-wrap:wrap;gap:4px 18px;font-family:var(--mono);font-size:12px}
-  .mast nav a{color:var(--muted);text-decoration:none}
+  .mast nav a{color:var(--muted);text-decoration:none;display:inline-block;padding:6px 0}
   .mast nav a:hover{color:var(--jade)}
 
   /* hero */
@@ -102,6 +102,8 @@
   .dia .wrap{padding-block:40px}
   .dia figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7}
   .sx{overflow-x:auto}
+  .sx-hint{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+  @media (max-width:760px){.sx-hint{display:block}}
   .sx svg{display:block;min-width:680px;width:100%;height:auto}
   .cdia{margin:24px 0 0;padding:24px 22px 22px;background:var(--panel);border:1px solid var(--line2);border-radius:6px}
   .cdia figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
@@ -274,7 +276,7 @@
   "aboutH": "I would rather fix the cause than work around it.",
   "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. Before this I spent eight years in paid media. That included working at Google on Google Ads, on campaigns for brands like DoorDash, The Walking Dead and Fox News. I still run the ads and the tracking for my own clients, so I see what happens to a lead before it reaches the CRM and after.",
   "about2": "Most of what I fix is not exotic. It is a workflow with no exit condition still chasing someone who already booked. It is a purchase event firing twice so the numbers cannot be trusted. It is a hundred products quietly missing from a shopping feed because nobody published them to the right channel.",
-  "about3": "I am not the cheapest and I am not the fastest. What I try to be is the person who tests the thing before saying it works, writes down what was changed, and leaves you able to run it without me.",
+  "about3": "I am not the cheapest, but I am fast. What I try to be is the person who tests the thing before saying it works, writes down what was changed, and leaves you able to run it without me.",
   "svcH": "Four things, done properly, rather than a long list done once.",
   "services": [
     {
@@ -374,7 +376,7 @@
     }
   ],
   "workH": "The mechanisms are exactly as built. Client names are held back until I have permission to use them.",
-  "workP": "I am happy to walk through any of these live, in the account, on a call.",
+  "workP": "Two of these are live client systems I still run. The third is a tool I built for my own use and published, and the fourth was a one-off audit. I am happy to walk through any of them live, in the account, on a call.",
   "cases": [
     {
       "t": "Coworking operator, two Sydney locations",
@@ -641,7 +643,8 @@
     "Read access to the one account you want looked at. Read is enough. I do not need to change anything to tell you what is wrong with it.",
     "One line on what is meant to happen when an enquiry comes in, so I can show you where it actually goes instead."
   ],
-  "auditNote": "The $400 comes off the build in full if you go ahead within thirty days, so it is the first instalment rather than a second cost. Three working days from the day I have access."
+  "auditNote": "The $400 comes off the build in full if you go ahead within thirty days, so it is the first instalment rather than a second cost. Three working days from the day I have access.",
+  "sxHint": "Scroll the diagram sideways to see all of it"
 }</script>
 
 <header class="mast"><div class="wrap">
@@ -778,6 +781,7 @@
     h += '<figure class="dia" style="margin:0"><div class="wrap">'
       + '<p class="num"><b>00</b> / A system I run today</p>'
       + '<div class="sx">' + SVG + '</div>'
+      + '<p class="sx-hint">' + esc(get("sxHint")) + '</p>'
       + '<figcaption>' + ed("diaCap",get("diaCap")) + '</figcaption>'
       + '</div></figure>';
 
@@ -836,7 +840,8 @@
     (D.cases||[]).forEach(function(c,i){
       h += '<article class="case"><div class="ctop"><h3>' + ed("cases."+i+".t",c.t) + '</h3><span class="tag">' + ed("cases."+i+".tag",c.tag) + '</span></div>'
         + '<p class="hook">' + ed("cases."+i+".hook",c.hook) + '</p>'
-        + (CASEDIA[i] ? '<figure class="cdia"><div class="sx">' + CASEDIA[i] + '</div><figcaption>'
+        + (CASEDIA[i] ? '<figure class="cdia"><div class="sx">' + CASEDIA[i] + '</div>'
+            + '<p class="sx-hint">' + esc(get("sxHint")) + '</p><figcaption>'
             + ed("caseDia."+i+".cap", ((D.caseDia && D.caseDia[i] && D.caseDia[i].cap) || "")) + '</figcaption></figure>' : '')
         + '<dl class="rows">';
       (c.rows||[]).forEach(function(r,j){

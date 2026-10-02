@@ -1,0 +1,66 @@
+# Watches the live site so the first person to notice a break is not a prospect.
+# Runs every weekday morning and on every push. A failure emails Bryan via GitHub.
+name: Site health check
+
+on:
+  schedule:
+    - cron: "0 23 * * 0-4"   # 08:00 Japan time, Monday to Friday
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: The site answers over HTTPS
+        run: |
+          code=$(curl -sS -o page.html -w '%{http_code}' --max-time 30 https://bryanesguerra.com/)
+          echo "status: $code"
+          test "$code" = "200" || { echo "::error::site returned $code"; exit 1; }
+
+      - name: http redirects to https
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 http://bryanesguerra.com/)
+          test "$code" = "301" || { echo "::error::http did not redirect, got $code"; exit 1; }
+
+      - name: The certificate is not about to expire
+        run: |
+          end=$(echo | openssl s_client -connect bryanesguerra.com:443 -servername bryanesguerra.com 2>/dev/null \
+                | openssl x509 -noout -enddate | cut -d= -f2)
+          left=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+          echo "certificate expires in $left days ($end)"
+          test "$left" -gt 14 || { echo "::error::certificate expires in $left days"; exit 1; }
+
+      - name: The ways to contact him are still on the page
+        run: |
+          fail=0
+          for needle in \
+            "calendar.google.com/calendar/appointments" \
+            "bryan@bryanesguerra.com" \
+            "Book a 30-minute call"
+          do
+            grep -qF "$needle" page.html || { echo "::error::missing from the page: $needle"; fail=1; }
+          done
+          exit $fail
+
+      - name: The page did not fall back to its no-JavaScript version by mistake
+        run: |
+          # The static fallback is meant to be replaced on every normal load. If the
+          # data block ever breaks, this string is all a visitor would be left with.
+          grep -qF '"cta1"' page.html || { echo "::error::the data block is missing or malformed"; exit 1; }
+
+      - name: Supporting files are reachable
+        run: |
+          fail=0
+          for path in share-card.jpg bryan.png favicon.svg robots.txt sitemap.xml; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "https://bryanesguerra.com/$path")
+            [ "$code" = "200" ] || { echo "::error::$path returned $code"; fail=1; }
+          done
+          exit $fail
+
+      - name: Mail for the domain still routes
+        run: |
+          mx=$(dig +short MX bryanesguerra.com | wc -l)
+          echo "MX records found: $mx"
+          test "$mx" -ge 1 || { echo "::error::no MX records, bryan@bryanesguerra.com would bounce"; exit 1; }
