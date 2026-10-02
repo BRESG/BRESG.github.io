@@ -1,0 +1,5 @@
+# bryanesguerra.com
+User-agent: *
+Allow: /
+
+Sitemap: https://bryanesguerra.com/sitemap.xml

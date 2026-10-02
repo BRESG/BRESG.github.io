@@ -27,11 +27,13 @@
 <meta name="twitter:description" content="I build booking and follow-up systems in GoHighLevel, n8n and Zapier, and fix the ad tracking behind them. Two client systems live in production.">
 <meta name="twitter:image" content="https://bryanesguerra.com/share-card.jpg">
 <meta name="twitter:image:alt" content="Bryan Esguerra. I build the system that answers your leads before you can. GoHighLevel, n8n, Zapier and ad tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root{
     --bg:#0C1A18; --panel:#122522; --panel2:#17302C; --line:#22403B; --line2:#1B3733;
-    --ink:#F2EEE6; --body:#BDBAB1; --muted:#8B8A80;
+    --ink:#F2EEE6; --body:#BDBAB1; --muted:#95948B;
     --jade:#4FC9AE; --amber:#E4A64B; --rose:#E08A6B;
     --display:"Archivo","Helvetica Neue",Arial,sans-serif;
     --serif:"Source Serif 4",Georgia,serif;
@@ -40,14 +42,14 @@
   }
   :root[data-theme="light"]{
     --bg:#FAF8F3; --panel:#FFFFFF; --panel2:#F3EFE6; --line:#E2DBCC; --line2:#EBE5D9;
-    --ink:#10201D; --body:#3C4A46; --muted:#77736A;
-    --jade:#0B6E5F; --amber:#A8660F; --rose:#B4593A;
+    --ink:#10201D; --body:#3C4A46; --muted:#706C64;
+    --jade:#0B6E5F; --amber:#9B5E0D; --rose:#A95336;
   }
   @media (prefers-color-scheme:light){
     :root:not([data-theme="dark"]){
       --bg:#FAF8F3; --panel:#FFFFFF; --panel2:#F3EFE6; --line:#E2DBCC; --line2:#EBE5D9;
-      --ink:#10201D; --body:#3C4A46; --muted:#77736A;
-      --jade:#0B6E5F; --amber:#A8660F; --rose:#B4593A;
+      --ink:#10201D; --body:#3C4A46; --muted:#706C64;
+      --jade:#0B6E5F; --amber:#9B5E0D; --rose:#A95336;
     }
   }
   *{box-sizing:border-box}
@@ -56,7 +58,8 @@
   h1,h2,h3,h4{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0;letter-spacing:-0.02em}
   a{color:var(--jade)}
   a:focus-visible,button:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
-  section{border-top:1px solid var(--line2)}
+  section{border-top:1px solid var(--line2);scroll-margin-top:124px}
+  #book{scroll-margin-top:124px}
   section>.wrap{padding-block:64px}
   .num{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
   .num b{color:var(--jade);font-weight:500}
@@ -222,6 +225,21 @@
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Bryan Esguerra",
+  "url": "https://bryanesguerra.com/",
+  "image": "https://bryanesguerra.com/share-card.jpg",
+  "email": "bryan@bryanesguerra.com",
+  "description": "I build booking and follow-up systems in GoHighLevel, n8n and Zapier, and fix the ad tracking behind them.",
+  "address": { "@type": "PostalAddress", "addressCountry": "JP" },
+  "areaServed": ["AU", "US", "GB"],
+  "knowsAbout": ["GoHighLevel", "n8n", "Zapier", "Shopify", "Meta Pixel", "Conversions API", "GA4", "Google Ads"],
+  "founder": { "@type": "Person", "name": "Bryan Esguerra" }
+}
+</script>
 </head>
 <body>
 <script type="application/json" id="data">{
@@ -252,9 +270,9 @@
       "l": "Where my clients are"
     }
   ],
-  "diaCap": "The lead-to-booking flow I rebuilt this month for a Sydney coworking operator. Both of their sites run on one set of workflows, separated by custom values rather than duplicated.",
+  "diaCap": "The lead-to-booking flow I rebuilt in September 2026 for a Sydney coworking operator. Both of their sites run on one set of workflows, separated by custom values rather than duplicated.",
   "aboutH": "I would rather fix the cause than work around it.",
-  "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. Before this I spent eight years in paid media, including a spell at Google working on Google Ads, on campaigns for brands like DoorDash, The Walking Dead and Fox News. I still run the ads and the tracking for my own clients, so I see what happens to a lead before it reaches the CRM and after.",
+  "about1": "I build CRM and automation systems for small service businesses, mostly booking and lead follow-up, in GoHighLevel and n8n. I run my own GoHighLevel agency account, and my clients' sub-accounts sit on it, so I work from the agency side rather than only inside one account. Before this I spent eight years in paid media. That included working at Google on Google Ads, on campaigns for brands like DoorDash, The Walking Dead and Fox News. I still run the ads and the tracking for my own clients, so I see what happens to a lead before it reaches the CRM and after.",
   "about2": "Most of what I fix is not exotic. It is a workflow with no exit condition still chasing someone who already booked. It is a purchase event firing twice so the numbers cannot be trusted. It is a hundred products quietly missing from a shopping feed because nobody published them to the right channel.",
   "about3": "I am not the cheapest and I am not the fastest. What I try to be is the person who tests the thing before saying it works, writes down what was changed, and leaves you able to run it without me.",
   "svcH": "Four things, done properly, rather than a long list done once.",
@@ -355,7 +373,7 @@
       ]
     }
   ],
-  "workH": "Client names shown with permission pending. The mechanisms are exactly as built.",
+  "workH": "The mechanisms are exactly as built. Client names are held back until I have permission to use them.",
   "workP": "I am happy to walk through any of these live, in the account, on a call.",
   "cases": [
     {
@@ -485,7 +503,7 @@
   "zaps": [
     {
       "t": "Lead intake, enrichment and priority routing",
-      "meta": "11 steps &middot; 2 paths &middot; Youform, Apollo, Slack, Gmail",
+      "meta": "11 steps · 2 paths · Youform, Apollo, Slack, Gmail",
       "img": "zapier/zap-1.jpg",
       "w": 800,
       "h": 1400,
@@ -494,7 +512,7 @@
     },
     {
       "t": "Asana task stage drives the whole client lifecycle",
-      "meta": "24 steps &middot; 5 paths &middot; Asana, Drive, Gmail, AI",
+      "meta": "24 steps · 5 paths · Asana, Drive, Gmail, AI",
       "img": "zapier/zap-2.jpg",
       "w": 1400,
       "h": 982,
@@ -503,7 +521,7 @@
     },
     {
       "t": "One video becomes a week of content",
-      "meta": "13 steps &middot; loop &middot; Drive, AI, Facebook, LinkedIn",
+      "meta": "13 steps · loop · Drive, AI, Facebook, LinkedIn",
       "img": "zapier/zap-3.jpg",
       "w": 1008,
       "h": 1400,
@@ -586,7 +604,7 @@
   "offerIn": [
     "The GoHighLevel spine: pipeline and stages, a tag taxonomy, custom fields and custom values, so the same words mean the same thing everywhere.",
     "Appointment workflows: confirm, remind, notify your team, no-show, nurture.",
-    "Speed to lead, so a new enquiry gets an answer without anyone having to remember. On one client's account the tagging workflow has carried 187 contacts and speed to lead 62.",
+    "Speed to lead, so a new enquiry gets an answer without anyone having to remember. On one client's account the tagging workflow has carried 187 contacts through it, and the speed-to-lead workflow 62.",
     "An AI qualifier in your messaging. It asks a few questions, captures a mobile number and sends a prefilled booking link. Anyone who asks for a person gets one.",
     "A WhatsApp reply layer with branches for pricing, samples, later and just browsing, plus a fallback for anything it does not recognise and an opt-out.",
     "A landing page with your booking calendar embedded and the campaign values carried through, so you can still tell where a booking came from after the form is submitted.",
@@ -604,7 +622,7 @@
     "A decision on whose calendar a booking lands in, and what happens when nobody picks up."
   ],
   "offerClose": "You get a change log with the undo step for every change I make and short notes per workflow, so your team can run this without me. Pick a time below and bring the account you are least happy with, and I will tell you on the call whether this is the right thing for it.",
-  "offerBuildNote": "I have built these pieces for paying clients on my own GoHighLevel account, and the last fixed price build came back five out of five. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
+  "offerBuildNote": "I have built these pieces for paying clients on my own GoHighLevel account. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
   "auditName": "One-account audit",
   "auditPrice": "$400",
   "auditTime": "3 working days",
@@ -634,13 +652,28 @@
   </nav>
 </div></header>
 
-<main id="app"></main>
+<main id="app">
+  <!-- Everything below is replaced the moment the page renders. It exists so that
+       a visitor with JavaScript off, a crawler that does not run scripts, and a
+       future typo in the data block all still get a name, a way to book and a
+       way to email, instead of a blank page. -->
+  <div class="wrap" style="padding-block:72px">
+    <h1 style="font-size:clamp(30px,5vw,48px);line-height:1.1">Bryan Esguerra</h1>
+    <p style="font-size:19px;max-width:58ch">I build booking and follow-up systems in
+      GoHighLevel, n8n and Zapier, and fix the ad tracking behind them.</p>
+    <p><a class="btn p" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1lIlljuk7utCb3zp7MBN-Lk57qnGk3gugxDMIKWz6y_hZF1zDMZcXZ2nQjpQyriCsJaUL1Lggw?gv=true">Book a 30-minute call</a></p>
+    <p>Or email <a href="mailto:bryan@bryanesguerra.com">bryan@bryanesguerra.com</a>.</p>
+  </div>
+</main>
 
+<!-- Edit bar. Labels are filled in by JS only when the publish API is actually
+     available, so a crawler reading the raw HTML does not index the words
+     "Edit mode. Click any text to change it." as if they were page content. -->
 <div id="bar" hidden>
-  <span id="msg">Edit mode. Click any text to change it.</span>
+  <span id="msg"></span>
   <span class="sp"></span>
-  <button id="cancel" type="button">Cancel</button>
-  <button id="save" class="p" type="button">Save changes</button>
+  <button id="cancel" type="button"></button>
+  <button id="save" class="p" type="button"></button>
 </div>
 
 <script>
@@ -650,7 +683,7 @@
   var raw = document.getElementById("data").textContent;
   var D;
   try { D = JSON.parse(raw); } catch(e){ D = null; }
-  if(!D){ document.getElementById("app").textContent = "Content failed to load."; return; }
+  if(!D){ return; }   // leave the static fallback in <main> standing
 
   function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){
     return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c]; }); }
@@ -838,7 +871,7 @@
     (D.zaps||[]).forEach(function(z,i){
       h += '<article class="zap">'
         + '<div class="zap-head"><h3>' + ed("zaps."+i+".t",z.t) + '</h3>'
-        + '<span class="zap-meta">' + z.meta + '</span></div>'
+        + '<span class="zap-meta">' + ed("zaps."+i+".meta", z.meta || "") + '</span></div>'
         + '<p class="zap-d">' + ed("zaps."+i+".d",z.d) + '</p>'
         + '<a class="zap-img" href="' + esc(z.img) + '" target="_blank" rel="noopener">'
         + '<img src="' + esc(z.img) + '" alt="' + esc(z.alt) + '" loading="lazy"'
@@ -991,6 +1024,8 @@
     window.claude.use("artifact").then(function(a){
       if(!a) return;            // viewer cannot publish: page stays read-only
       api = a;
+      cancelBtn.textContent = "Cancel";
+      saveBtn.textContent = "Save changes";
       addEditButton();
     }).catch(function(){});
   }
