@@ -121,6 +121,9 @@
   .offer-cols li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--jade)}
   .offer-cols .no li:before{background:var(--rose)}
   .offer-close{margin:26px 0 0;font-size:16px}
+  .offer+.offer{margin-top:22px}
+  .offer.first{background:var(--bg);border-style:dashed}
+  .offer-step{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--jade);margin:0 0 14px}
   .quote{margin:24px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line2);border-left:2px solid var(--jade);border-radius:0 6px 6px 0}
   .me{display:grid;grid-template-columns:200px 1fr;gap:30px 34px;align-items:start;max-width:980px}
   .me-solo{max-width:68ch}
@@ -221,8 +224,7 @@
 </style>
 </head>
 <body>
-<script type="application/json" id="data">
-{
+<script type="application/json" id="data">{
   "name": "Bryan Esguerra",
   "role": "Automation & CRM Systems · GoHighLevel · n8n · Shopify · Tracking",
   "avail": "Available for projects",
@@ -246,7 +248,7 @@
       "l": "Products found missing from Shopping"
     },
     {
-      "n": "AU\u00b7US\u00b7UK",
+      "n": "AU·US·UK",
       "l": "Where my clients are"
     }
   ],
@@ -572,10 +574,10 @@
   "github": "github.com/BRESG",
   "photo": "bryan.png",
   "photoAlt": "Bryan Esguerra, the person you would be working with",
-  "photoCap": "Bryan Esguerra \u00b7 Japan \u00b7 the person who does the work",
+  "photoCap": "Bryan Esguerra · Japan · the person who does the work",
   "calendar": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1lIlljuk7utCb3zp7MBN-Lk57qnGk3gugxDMIKWz6y_hZF1zDMZcXZ2nQjpQyriCsJaUL1Lggw?gv=true",
-  "offerH": "The build I have done enough times to put a price on.",
-  "offerP": "I have built these pieces for paying clients on my own GoHighLevel account, and the last fixed price build came back five out of five. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
+  "offerH": "Two ways to start. Both priced before I begin.",
+  "offerP": "One buys you an answer about a single account. The other fixes the whole path from enquiry to booking. If you start small and then go ahead, the smaller one comes off the price of the larger one, so nothing is wasted.",
   "offerName": "Custom AI lead qualification and follow-up system",
   "offerPrice": "From $2,000",
   "offerPriceNote": "I give you the final number before I start and it does not move after that. Larger builds are split into milestones, so you are never paying ahead of something you have seen.",
@@ -601,9 +603,28 @@
     "Access to whatever you want measured: Meta, GA4, Google Ads, your site. So the tracking can be checked rather than assumed.",
     "A decision on whose calendar a booking lands in, and what happens when nobody picks up."
   ],
-  "offerClose": "You get a change log with the undo step for every change I make and short notes per workflow, so your team can run this without me. Pick a time below and bring the account you are least happy with, and I will tell you on the call whether this is the right thing for it."
-}
-</script>
+  "offerClose": "You get a change log with the undo step for every change I make and short notes per workflow, so your team can run this without me. Pick a time below and bring the account you are least happy with, and I will tell you on the call whether this is the right thing for it.",
+  "offerBuildNote": "I have built these pieces for paying clients on my own GoHighLevel account, and the last fixed price build came back five out of five. It is packaged as a snapshot now, though yours would be the first account it goes into, so I am not going to pretend it drops in untouched. I have written the whole thing down with the price on it, so you can decide before we speak rather than after three calls.",
+  "auditName": "One-account audit",
+  "auditPrice": "$400",
+  "auditTime": "3 working days",
+  "auditIn": [
+    "One account reviewed end to end. Your CRM or your tracking, whichever is hurting more.",
+    "Written findings, ranked by what each one is costing you rather than by how hard it is to fix.",
+    "The exact fix for each one, in plain words and specific enough to hand to somebody else if you would rather not use me.",
+    "Twenty minutes on a call to walk you through it, so you are not left reading a document on your own."
+  ],
+  "auditOut": [
+    "Any fixing. This buys an answer, not a change. That is what keeps it three days instead of quietly turning into a free build.",
+    "A number. No promised revenue lift and no return on ad spend, the same as everywhere else on this page.",
+    "Ongoing access. It is one piece of work and it has an end."
+  ],
+  "auditNeed": [
+    "Read access to the one account you want looked at. Read is enough. I do not need to change anything to tell you what is wrong with it.",
+    "One line on what is meant to happen when an enquiry comes in, so I can show you where it actually goes instead."
+  ],
+  "auditNote": "The $400 comes off the build in full if you go ahead within thirty days, so it is the first instalment rather than a second cost. Three working days from the day I have access."
+}</script>
 
 <header class="mast"><div class="wrap">
   <div class="logo" id="logo"></div>
@@ -840,7 +861,22 @@
       + '<p class="num"><b>08</b> / What it costs</p>'
       + '<h2>' + ed("offerH",get("offerH")) + '</h2>'
       + '<p>' + ed("offerP",get("offerP")) + '</p></div>'
-      + '<div class="offer"><div class="offer-top">'
+      + '<div class="offer first"><p class="offer-step">Start small</p><div class="offer-top">'
+      + '<h3>' + ed("auditName",get("auditName")) + '</h3>'
+      + '<div class="offer-meta"><span>Price<b>' + ed("auditPrice",get("auditPrice")) + '</b></span>'
+      + '<span>Delivery<b>' + ed("auditTime",get("auditTime")) + '</b></span></div></div>'
+      + '<div class="offer-cols">'
+      + '<div><h4>What is in it</h4><ul>';
+    (D.auditIn||[]).forEach(function(x,i){ h += '<li>' + ed("auditIn."+i, x) + '</li>'; });
+    h += '</ul></div><div class="no"><h4>What is not</h4><ul>';
+    (D.auditOut||[]).forEach(function(x,i){ h += '<li>' + ed("auditOut."+i, x) + '</li>'; });
+    h += '</ul></div><div><h4>What I need from you</h4><ul>';
+    (D.auditNeed||[]).forEach(function(x,i){ h += '<li>' + ed("auditNeed."+i, x) + '</li>'; });
+    h += '</ul></div></div>'
+      + '<p class="offer-close">' + ed("auditNote",get("auditNote")) + '</p>'
+      + '</div>'
+
+      + '<div class="offer"><p class="offer-step">Or the whole thing</p><div class="offer-top">'
       + '<h3>' + ed("offerName",get("offerName")) + '</h3>'
       + '<div class="offer-meta"><span>Price<b>' + ed("offerPrice",get("offerPrice")) + '</b></span>'
       + '<span>Delivery<b>' + ed("offerTime",get("offerTime")) + '</b></span></div></div>'
@@ -854,6 +890,7 @@
     h += '</ul></div></div>'
       + '<p class="offer-close">' + ed("offerPriceNote",get("offerPriceNote")) + ' ' + ed("offerTimeNote",get("offerTimeNote")) + '</p>'
       + '<p class="offer-close">' + ed("offerClose",get("offerClose")) + '</p>'
+      + '<p class="offer-close">' + ed("offerBuildNote",get("offerBuildNote")) + '</p>'
       + '</div>'
       + midCta('No charge for the call, and no obligation after it.')
       + '</div></section>';
