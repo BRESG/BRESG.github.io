@@ -52,12 +52,37 @@ jobs:
 
       - name: Supporting files are reachable
         run: |
+          # The three zapier/ images are the only visual evidence in the Zaps
+          # section. If they break, that section renders as three empty boxes and
+          # nothing else on the page looks wrong, so nobody would notice.
           fail=0
-          for path in share-card.jpg bryan.png favicon.svg robots.txt sitemap.xml; do
+          for path in share-card.jpg bryan.png favicon.svg favicon-32.png \
+                      apple-touch-icon.png robots.txt sitemap.xml \
+                      zapier/zap-1.jpg zapier/zap-2.jpg zapier/zap-3.jpg; do
             code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "https://bryanesguerra.com/$path")
             [ "$code" = "200" ] || { echo "::error::$path returned $code"; fail=1; }
           done
           exit $fail
+
+      - name: The structured data still parses
+        run: |
+          # If this block breaks, Google silently drops the rich result and the
+          # page looks completely normal. Nothing else would catch it.
+          python3 - <<'PY'
+          import json, re, sys
+          html = open('page.html', encoding='utf-8', errors='replace').read()
+          blocks = re.findall(
+              r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
+              html, re.S | re.I)
+          if not blocks:
+              print('::error::no JSON-LD block on the page'); sys.exit(1)
+          for i, b in enumerate(blocks):
+              try:
+                  data = json.loads(b.strip())
+              except Exception as e:
+                  print('::error::JSON-LD block %d does not parse: %s' % (i, e)); sys.exit(1)
+          print('JSON-LD blocks parsed: %d' % len(blocks))
+          PY
 
       - name: Mail for the domain still routes
         run: |
