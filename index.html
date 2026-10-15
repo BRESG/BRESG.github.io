@@ -475,9 +475,45 @@
       ]
     }
   ],
-  "zapsH": "Automation case studies.",
-  "zapsP": "Real Zapier workflows I built, shown as they look on the canvas. Click any one to see it full size.",
+  "zapsH": "Case studies: results and automation.",
+  "zapsP": "Performance wins from live client accounts (platform-reported, short date ranges noted), then real automation workflows as they look on the canvas. Click any image to see it full size.",
   "zaps": [
+    {
+      "t": "Goodspace: Google Ads cost per conversion down 43%",
+      "meta": "Google Ads · Sydney coworking & storage · Sep → Oct 1–10, 2026",
+      "img": "results/goodspace-google-ads.jpg",
+      "w": 1200,
+      "h": 540,
+      "alt": "Bar chart: Goodspace Google Ads cost per conversion A$106.53 in Sep 2026 vs A$60.19 in Oct 1–10; Rouse Hill Search A$101.51 vs A$60.42.",
+      "d": "Across all Google Ads campaigns, cost per conversion fell from A$106.53 to A$60.19. Rouse Hill Search fell from A$101.51 to A$60.42 (−40%)."
+    },
+    {
+      "t": "Goodspace: Rouse Hill Meta cost per lead down 20%",
+      "meta": "Meta lead ads · Sep → Oct 1–10, 2026",
+      "img": "results/goodspace-meta.jpg",
+      "w": 1200,
+      "h": 390,
+      "alt": "Bar chart: Goodspace Rouse Hill Meta cost per lead A$44.78 in Sep 2026 vs A$35.91 in Oct 1–10.",
+      "d": "Rouse Hill lead ads went from A$44.78 to A$35.91 per lead, and traffic moved from chat campaigns to location landing pages for higher-intent leads."
+    },
+    {
+      "t": "Goodspace: local search growth across three sites",
+      "meta": "Google Business Profile + Search Console · Sep 2026",
+      "img": "results/goodspace-local.jpg",
+      "w": 1200,
+      "h": 640,
+      "alt": "Tiles: Rouse Hill profile views +121% YoY; Kingsgrove direction requests +30.5%; Eastgardens website clicks +525%; average Google position 24.2 to 15.2.",
+      "d": "Year on year, Rouse Hill profile views rose 121% (740), Kingsgrove direction requests 30.5% (321) and Eastgardens website clicks 525% (25). Average Google position improved from 24.2 to 15.2 (Aug → Sep)."
+    },
+    {
+      "t": "Be A Little: sign-ups at under A$2, and sales tied to real orders",
+      "meta": "Meta Ads · Shopify · GA4 · Sep 1 – Oct 10, 2026",
+      "img": "results/bealittle.jpg",
+      "w": 1200,
+      "h": 640,
+      "alt": "Tiles: 495 First Access sign-ups at A$1.61 and A$1.99; Sep Meta return 1.43x Shopify-verified; 4 purchases worth A$3,429 seen in GA4 but missing in Google Ads.",
+      "d": "495 First Access sign-ups at A$1.61–A$1.99 each. September Meta sales checked against Shopify orders: A$4,092 revenue on A$2,855 spend (1.43x). Also found purchases missing from Google Ads tracking before Shopping restarts."
+    },
     {
       "t": "Lead intake, enrichment and priority routing",
       "meta": "Zapier · 11 steps · Youform, Apollo, Google Sheets, Slack, AI, Gmail",
@@ -547,7 +583,7 @@
 <header class="mast"><div class="wrap">
   <div class="logo" id="logo"></div>
   <nav>
-    <a href="#about">About</a><a href="#work">US experience</a><a href="#services">What I do</a><a href="#zaps">Automation</a>
+    <a href="#about">About</a><a href="#work">US experience</a><a href="#services">What I do</a><a href="#zaps">Case studies</a>
     <a href="#tools">Tools</a><a href="#contact">Contact</a><a href="#book">Book 1:1</a>
   </nav>
 </div></header>
@@ -766,7 +802,7 @@
 
     // zapier builds
     h += '<section id="zaps"><div class="wrap"><div class="sec-h">'
-      + '<p class="num"><b>06</b> / Zapier builds</p>'
+      + '<p class="num"><b>06</b> / Case studies</p>'
       + '<h2>' + ed("zapsH",get("zapsH")) + '</h2>'
       + '<p>' + ed("zapsP",get("zapsP")) + '</p></div>';
     (D.zaps||[]).forEach(function(z,i){
