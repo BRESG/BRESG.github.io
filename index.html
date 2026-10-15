@@ -33,7 +33,9 @@
 <meta name="twitter:image:alt" content="Bryan Esguerra, former Google Ads Specialist and founder of Zilla Digital Marketing and AI Zilla Automation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 <style>
   :root{
     --bg:#0C1A18; --panel:#122522; --panel2:#17302C; --line:#22403B; --line2:#1B3733;
@@ -208,7 +210,7 @@
   .contact h2{font-size:clamp(26px,3.8vw,40px);font-weight:700}
   .contact p.l{max-width:56ch;margin:16px 0 0}
   .clist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 30px;margin-top:38px}
-  .clist h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  .clist h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
   .clist a,.clist span.v{display:block;margin-top:8px;font-size:15.5px;word-break:break-word}
   .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
 
@@ -833,7 +835,7 @@
       + '<h2>' + ed("aboutH",get("aboutH")) + '</h2></div>'
       + '<div class="' + (get("photo") ? 'me' : 'me-solo') + '">'
       + (get("photo")
-          ? '<figure class="me-ph"><img src="' + esc(get("photo")) + '" width="371" height="440" loading="lazy"'
+          ? '<figure class="me-ph"><img src="' + esc(get("photo")) + '"' + (get("photo")==="bryan.jpg" ? ' srcset="bryan-380.jpg 380w, bryan.jpg 742w" sizes="(max-width:430px) 190px, 371px"' : '') + ' width="371" height="440" loading="lazy"'
             + ' alt="' + esc(get("photoAlt") || "Bryan Esguerra") + '">'
             + (get("photoCap") ? '<figcaption>' + ed("photoCap",get("photoCap")) + '</figcaption>' : '')
             + '</figure>'
@@ -988,11 +990,11 @@
             + '<a class="book-link" data-ghl-calendar href="' + esc(get("calendar")) + '" target="_blank" rel="noopener">Open the booking page in a new tab</a>.</p>'
           : '')
       + '<div class="clist">'
-      + '<div><h4>Email</h4><a href="mailto:' + esc(mail) + '">' + ed("email",mail) + '</a></div>'
-      + (get("github") ? '<div><h4>Code</h4><a href="https://' + esc(get("github")) + '" target="_blank" rel="noopener">' + ed("github",get("github")) + '</a></div>' : '')
-      + (get("upwork") ? '<div><h4>Upwork</h4><a href="' + esc(get("upwork")) + '">' + ed("upwork",get("upwork")) + '</a></div>' : '')
-      + (get("ojph") ? '<div><h4>OnlineJobs.ph</h4><a href="' + esc(get("ojph")) + '">' + ed("ojph",get("ojph")) + '</a></div>' : '')
-      + '<div><h4>Location</h4><span class="v">' + ed("loc",get("loc")) + '</span></div>'
+      + '<div><h3>Email</h3><a href="mailto:' + esc(mail) + '">' + ed("email",mail) + '</a></div>'
+      + (get("github") ? '<div><h3>Code</h3><a href="https://' + esc(get("github")) + '" target="_blank" rel="noopener">' + ed("github",get("github")) + '</a></div>' : '')
+      + (get("upwork") ? '<div><h3>Upwork</h3><a href="' + esc(get("upwork")) + '">' + ed("upwork",get("upwork")) + '</a></div>' : '')
+      + (get("ojph") ? '<div><h3>OnlineJobs.ph</h3><a href="' + esc(get("ojph")) + '">' + ed("ojph",get("ojph")) + '</a></div>' : '')
+      + '<div><h3>Location</h3><span class="v">' + ed("loc",get("loc")) + '</span></div>'
       + '</div>'
       + '<div class="foot"><span>' + ed("name2", get("name")) + ' · Automation &amp; CRM systems</span><span>' + ed("rate",get("rate")) + '</span><span><a href="/press/">Press kit</a></span></div>'
       + '</div></section>';
@@ -1078,7 +1080,7 @@
   }
 })();
 </script>
-<script src="ghl-calendar-embed.js"></script>
+<script src="ghl-calendar-embed.js" defer></script>
 <script>
 // The embed script only rewrites an iframe src, so the plain fallback link would
 // otherwise lose the utm_* values and the click id. Copy the decorated src across
