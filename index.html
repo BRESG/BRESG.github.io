@@ -395,6 +395,7 @@
   "diaCap": "",
   "aboutH": "Senior marketer. Builder at heart.",
   "aboutLead": "Computer engineer by education. Digital marketer by profession. Ex-Googler by occupation. Pilot by hobby. Jiu-jitsu competitor in world tournaments.",
+  "aboutProof": "Worked with DoorDash, The Walking Dead and Fox News.",
   "about1": "I started in online marketing in 2016, in PPC and then SEO. In 2020 I joined Google (via TTEC) as a Google Ads Specialist and supported Google Ads campaigns for brands like DoorDash, The Walking Dead and Fox News, covering keyword research, ad copy, targeting and performance. From 2021 to 2026 I was Senior Media Buyer and Automations Engineer at Giant Partners in California.",
   "about2": "Today I'm the founder and owner of Zilla Digital Marketing and AI Zilla Automation, my AI company partnering with clients in the US and Australia. In Australia I work with Goodspace (Kingsgrove, Rouse Hill and Eastgardens) and Be A Little. I plan and run paid media on Google, Meta, TikTok, LinkedIn and Microsoft Ads, set up tracking you can trust (GA4, GTM, Meta CAPI), and build marketing automation and CRM systems in n8n, GoHighLevel and Zapier, so every lead is answered, followed up and measured.",
   "about3": "I hold 9 Google certifications and studied computer engineering, so I build the tracking and systems myself as well as the strategy. I'm based in Nagoya, Japan, and I work US business hours.",
@@ -846,6 +847,7 @@
           : '')
       + '<div class="me-tx">'
       + (get("aboutLead") ? '<p><strong>' + ed("aboutLead",get("aboutLead")) + '</strong></p>' : '')
+      + (get("aboutProof") ? '<p>' + ed("aboutProof",get("aboutProof")) + '</p>' : '')
       + '<p>' + ed("about1",get("about1")) + '</p>'
       + '<p>' + ed("about2",get("about2")) + '</p>'
       + '<p>' + ed("about3",get("about3")) + '</p>'
