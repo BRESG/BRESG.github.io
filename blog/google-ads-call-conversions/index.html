@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Ads Call Conversions: Close the Loop With LMA</title>
+<meta name="description" content="Google Ads call conversions can now go through Google's Data Manager API. See why it matters for big ad budgets and how LMA closes the loop.">
+<link rel="canonical" href="https://bryanesguerra.com/blog/google-ads-call-conversions/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bryan Esguerra">
+<meta property="og:title" content="Google Ads Call Conversions: Close the Loop With LMA">
+<meta property="og:description" content="Google Ads call conversions can now go through Google's Data Manager API. See why it matters for big ad budgets and how LMA closes the loop.">
+<meta property="og:url" content="https://bryanesguerra.com/blog/google-ads-call-conversions/">
+<meta property="og:image" content="https://bryanesguerra.com/blog/google-ads-call-conversions/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google Ads Call Conversions: Close the Loop With LMA">
+<meta name="twitter:description" content="Google Ads call conversions can now go through Google's Data Manager API. See why it matters for big ad budgets and how LMA closes the loop.">
+<meta name="twitter:image" content="https://bryanesguerra.com/blog/google-ads-call-conversions/share.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Source+Serif+4:opsz,wght@17,400;17,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bg:#FFFFFF;--soft:#F7F7F5;--line:#E5E5E2;--ink:#1A1A1A;--body:#1A1A1A;--muted:#555555;--go:#15803D;--go-h:#166534;--yellow:#FBE57D;--blue:#D6E4FF;--coral:#F2836B;
+    --display:Archivo,"Helvetica Neue",Arial,sans-serif;--mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 60px}
+  a{color:var(--ink);text-decoration:underline} img{max-width:100%}
+  .num{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  h1,h2{font-family:var(--display);color:var(--ink);letter-spacing:-.02em;margin:0}
+  h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin-bottom:10px}
+  h2{font-size:22px;margin:30px 0 12px}
+  h3{font-family:var(--display);color:var(--ink);font-size:18px;margin:22px 0 6px}
+  article p{margin:0 0 14px}
+  ul,ol{padding-left:22px;margin:0 0 14px} li{margin:4px 0}
+  .tag{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .share{border-radius:12px;border:1px solid var(--line);margin:8px 0 24px;width:100%;height:auto}
+  .tldr{background:var(--yellow);border-radius:12px;padding:18px 20px;margin:0 0 22px}
+  .tldr p{margin:0}
+  .take{background:var(--blue);border-radius:12px;padding:18px 20px;margin:8px 0 18px}
+  .take p:last-child{margin:0}
+  .btn{display:inline-block;font-family:var(--mono);font-size:14px;text-decoration:none;padding:12px 20px;border-radius:6px;margin:6px 10px 0 0}
+  .btn.p{background:var(--go);color:#FFFFFF}
+  .btn.p:hover{background:var(--go-h)}
+  .src{font-size:15px;color:var(--muted)}
+  .src a{color:var(--muted)}
+  .foot{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+  .foot a{color:var(--muted)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3M4K084K2J"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-3M4K084K2J");</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Google Ads Call Conversions: Your Ads Can't Learn From a Sale They Never Hear About",
+ "description": "Google Ads call conversions can now go through Google's Data Manager API. See why it matters for big ad budgets and how LMA closes the loop.",
+ "image": "https://bryanesguerra.com/blog/google-ads-call-conversions/share.png",
+ "datePublished": "2026-11-11",
+ "dateModified": "2026-11-11",
+ "mainEntityOfPage": "https://bryanesguerra.com/blog/google-ads-call-conversions/",
+ "author": {"@type": "Person","@id": "https://bryanesguerra.com/#person","name": "Bryan Esguerra","url": "https://bryanesguerra.com/"},
+ "publisher": {"@type": "Person","@id": "https://bryanesguerra.com/#person","name": "Bryan Esguerra"}
+}
+</script>
+</head>
+<body>
+<main class="wrap">
+  <p class="num"><a href="/">bryanesguerra.com</a> / <a href="/blog/">Blog</a></p>
+  <article>
+  <h1>Google Ads Call Conversions: Your Ads Can't Learn From a Sale They Never Hear About</h1>
+  <p class="tag">By Bryan Esguerra · <time datetime="2026-11-11">11 November 2026</time></p>
+  <img class="share" src="/blog/google-ads-call-conversions/share.png" alt="Google Ads call conversions: capture every lead, follow up fast, send the result back" width="1200" height="630">
+<p>Google Ads call conversions can now be sent through Google's Data Manager API, so your ads can learn which phone calls turned into sales. Here is how to make sure yours do.</p>
+<div class="tldr"><p><strong>TLDR:</strong> On 4 November 2026, Google added call conversions to its Data Manager API. Brands can now send Google, through the Data Manager API, the calls their ads drove and what those calls became. That is the last step of Lead Marketing Automation (LMA): capture every lead, follow up fast, and tell the ad platform what actually paid.</p></div>
+<h2>What changed for Google Ads call conversions</h2>
+<p>Google's Ads Developer Blog says the Data Manager API now supports Google Ads call conversions. In Google's words, call conversions "track when your ads lead to phone calls and when those calls lead to valuable customer actions." The caller is matched with a hashed phone number, not the raw number.</p>
+<p>Put simply: you can now send Google what happened after the call, like a booked meeting or a closed deal, through one API.</p>
+<h2>Why this matters for big ad budgets</h2>
+<p>Big ad budgets often lose money after the click, not on it:</p>
+<ul>
+<li>A call nobody logs.</li>
+<li>A form that waits a day for a reply.</li>
+<li>A sale the CRM knows about, but Google never hears about.</li>
+</ul>
+<p>When Google only sees clicks and calls, its bidding learns to buy more clicks and calls. It can't tell the caller who bought from the caller who hung up. Google's own help page says enhanced conversions for leads use the data you send "to improve accuracy and bidding performance." And Google reports that advertisers who sent first-party data, like emails and phone numbers, along with click IDs saw a median 10% increase in conversions compared with standard offline conversion imports. That is Google's figure, not mine, but it shows the direction: better data back means better bidding.</p>
+<h2>How Lead Marketing Automation closes the loop</h2>
+<p>This is why I build LMA as one system, not a pile of tools. For the bigger picture, read my guide on <a href="/blog/ai-agents-for-brand-marketing/">AI agents for brand marketing</a>. LMA has three steps:</p>
+<h3>1. Capture every lead</h3>
+<p>Forms and calls land in one place, tagged with the ad that brought them. No lead lives only in someone's inbox or call log.</p>
+<h3>2. Follow up fast</h3>
+<p>AI replies to the lead and routes it to the right person. People step in to qualify and close. Run by AI, managed by humans.</p>
+<h3>3. Send the result back</h3>
+<p>Qualified leads and closed deals go back to Google Ads, now including calls. So bidding learns from sales, not just clicks.</p>
+<h2>One honest catch</h2>
+<p>Google also added a new lead ID field. But Google says attribution using lead_id and match_id "isn't available yet." Until it is, keep sending other identifiers, like email, phone number and click ID, so your conversions still get credited to the right ads.</p>
+<h2>My take</h2>
+<div class="take">
+<p>I became a Google Ads Specialist, a Google Tech-1 role via TTEC, and I have worked in paid media since 2016. The pattern I see again and again is simple: the ad account is only as smart as the data you feed it.</p>
+<p>This update is small on paper, but it removes one more excuse. If your brand gets leads by phone, you can now tell Google, through the Data Manager API, which calls turned into money. The brands that wire this into their lead system will train their bidding on real sales. The ones that don't will keep paying for calls that go nowhere.</p>
+<p>Premium Google Ads and Meta Ads bring the lead. LMA makes sure none of it is wasted.</p>
+</div>
+<h2>Where to start</h2>
+<ol>
+<li><strong>List every way a lead reaches you.</strong> Forms, calls, chat, email. If you can't list it, you can't track it.</li>
+<li><strong>Put them in one place.</strong> One CRM, with the ad source on every lead.</li>
+<li><strong>Decide what counts as a win.</strong> A qualified lead? A booked meeting? A sale? Send those back to Google Ads.</li>
+<li><strong>Keep sending email, phone and click ID</strong> until Google's lead ID attribution is live.</li>
+</ol>
+<p>Do your ads know which calls turned into customers? If you run a big ad budget and want to close this loop, <a href="https://bryanesguerra.com/book/">book a call with me</a>, or see the agency at <a href="https://zilladigitalmarketing.com/">Zilla Digital Marketing</a>.</p>
+  <p><a class="btn p" href="/book/">Book a call</a></p>
+  <p class="src"><strong>Sources:</strong> <a href="https://ads-developers.googleblog.com/2026/11/data-manager-api-now-supports-google.html" rel="noopener">Google Ads Developer Blog, "Data Manager API now supports Google Ads call conversions and row-level diagnostics" (4 Nov 2026)</a>; <a href="https://support.google.com/google-ads/answer/2998031?hl=en" rel="noopener">Google Ads Help, enhanced conversions for leads and offline conversion imports</a>.</p>
+  </article>
+  <p class="foot"><a href="/">Back to bryanesguerra.com</a> · <a href="/blog/">Blog</a> · <a href="/press/">Press kit</a> · <a href="https://zilladigitalmarketing.com/" rel="noopener">Zilla Digital Marketing / AI ZILLA</a> · <a href="https://www.linkedin.com/in/bryan-esguerra-6170ab444/" rel="noopener">LinkedIn</a></p>
+</main>
+</body>
+</html>
